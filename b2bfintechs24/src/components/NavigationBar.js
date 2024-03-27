@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 
 const links = {
   "Dashboard" : "/",
-  "Issued" : "/here",
+  "Issued" : "/",
   "In-Transit" : "/",
   "Recieved" : "/",
   "Compelete" : "/"
