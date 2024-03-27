@@ -11,12 +11,12 @@ import {
 import { Link } from "react-router-dom";
 
 const links = {
-  "Dashboard" : "/",
-  "Issued" : "/",
-  "In-Transit" : "/",
-  "Recieved" : "/",
-  "Compelete" : "/"
-}
+  Dashboard: "/",
+  Issued: "/issued",
+  "In-Transit": "/intransit",
+  Recieved: "/recieved",
+  Completed: "/completed",
+};
 
 const NavigationBar = ({ width }) => {
   const drawerStyles = {
@@ -36,21 +36,21 @@ const NavigationBar = ({ width }) => {
         {["Dashboard", "Issued", "In-Transit", "Recieved", "Completed"].map(
           (item, index) => {
             return (
-              <ListItemButton
-                key={item}
-                sx={{
-                  "&:hover": { backgroundColor: "primary.main" },
-                  marginTop: 1,
-                }}
-              >
-                <Link to={links[item]} style={{ textDecoration: 'none' }}>
+              <Link to={links[item]} style={{ textDecoration: "none" }}>
+                <ListItemButton
+                  key={item}
+                  sx={{
+                    "&:hover": { backgroundColor: "primary.main" },
+                    marginTop: 1,
+                  }}
+                >
                   <ListItemText>
                     <Typography variant="h5" flexGrow={1} color={"white"}>
                       {item}
                     </Typography>
                   </ListItemText>
-                </Link>
-              </ListItemButton>
+                </ListItemButton>
+              </Link>
             );
           }
         )}
