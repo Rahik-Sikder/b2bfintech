@@ -5,7 +5,6 @@ const theme = createTheme({
     palette: {
         primary: {
             main: "#6100FF",
-            light: "#8033FF",
             dark: "#260064",
             contrastText: "FFF"
         },
@@ -14,15 +13,22 @@ const theme = createTheme({
             light: "#33FFC1",
             dark: "#00B27C",
             contrastText: "FFF"
-        }
+        },
+        dark_primary: {
+            main: "#260064",
+            contrastText: "FFF"
+        },
+        background: {
+            default: "#F5F5F5"
+          },
     },
 
     typography: {
         fontFamily: ["Rubik", "Kanit"],
         h1: {
             fontFamily: "Rubik",
-            fontWeight: 300,
-            fontSize: "4rem"
+            fontWeight: 400,
+            fontSize: "3rem"
         },
         h5: {
             fontFamily: "Kanit",
@@ -32,6 +38,13 @@ const theme = createTheme({
     },
 
     components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    color: '#FFF', // Set text color to white for buttons
+                },
+            },
+        },
         MuiDrawer: {
           styleOverrides: {
             paper: {
@@ -39,7 +52,7 @@ const theme = createTheme({
               color: "#FFF"
             }
           }
-        }
+        },
       }
 });
 
