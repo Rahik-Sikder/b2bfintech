@@ -38,12 +38,12 @@ const Dashboard = () => {
         >
           <Container maxWidth="lg" sx={{ marginTop: 5 }}>
             <Grid container flex={1} alignItems="center" justifyContent="right">
-              <Grid item xs={9}>
+              <Grid item xs={10}>
                 <Typography variant="h1" color="primary.dark">
                   Dashboard
                 </Typography>
               </Grid>
-              <Grid item xs={3}>
+              <Grid item xs={2}>
                 <Button variant="contained" color="primary" sx={{paddingX: 4}}>
                   Create New
                 </Button>

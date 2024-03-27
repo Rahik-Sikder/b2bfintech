@@ -10,19 +10,24 @@ import {
 
 import { Link } from "react-router-dom";
 
-const NavigationBar = ({width}) => {
+const links = {
+  "Dashboard" : "/",
+  "Issued" : "/here",
+  "In-Transit" : "/",
+  "Recieved" : "/",
+  "Compelete" : "/"
+}
 
+const NavigationBar = ({ width }) => {
   const drawerStyles = {
     width: width,
-
   };
 
-
   return (
-    <Drawer variant="permanent" PaperProps={{ style: drawerStyles, }}>
+    <Drawer variant="permanent" PaperProps={{ style: drawerStyles }}>
       <List>
-        <ListItem sx={{ marginTop: 2, marginBottom: 8}}>
-          <Link to="/" className="text-link">
+        <ListItem sx={{ marginTop: 2, marginBottom: 8 }}>
+          <Link to="/">
             <Typography variant="h5" color="white" flexGrow={1}>
               LOGO HERE
             </Typography>
@@ -33,13 +38,18 @@ const NavigationBar = ({width}) => {
             return (
               <ListItemButton
                 key={item}
-                sx={{ "&:hover": { backgroundColor: "primary.main" },  marginTop: 1}}
+                sx={{
+                  "&:hover": { backgroundColor: "primary.main" },
+                  marginTop: 1,
+                }}
               >
-                <ListItemText>
-                  <Typography variant="h5" flexGrow={1}>
-                    {item}
-                  </Typography>
-                </ListItemText>
+                <Link to={links[item]} style={{ textDecoration: 'none' }}>
+                  <ListItemText>
+                    <Typography variant="h5" flexGrow={1} color={"white"}>
+                      {item}
+                    </Typography>
+                  </ListItemText>
+                </Link>
               </ListItemButton>
             );
           }
