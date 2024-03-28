@@ -11,12 +11,12 @@ import {
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 
-const Dashboard = () => {
+const Dashboard = ({setLoggedIn}) => {
   return (
     <PageContainer>
       <Container maxWidth="lg" sx={{ marginTop: 5 }}>
         <Grid container flex={1} alignItems="center" justifyContent="right">
-          <Grid item xs={10}>
+          <Grid item xs={9}>
             <Typography variant="h1" color="primary.dark">
               Dashboard
             </Typography>
@@ -24,6 +24,13 @@ const Dashboard = () => {
           <Grid item xs={2}>
             <Button variant="contained" color="primary" sx={{ paddingX: 4 }}>
               Create New
+            </Button>
+          </Grid>
+          <Grid item xs={1}>
+            {/* TEMPORARY LOGOUT BUTTON */}
+            <Button variant="contained" color="primary" sx={{ paddingX: 4 }}
+              onClick={()=> setLoggedIn(false)}>
+              Logout
             </Button>
           </Grid>
         </Grid>

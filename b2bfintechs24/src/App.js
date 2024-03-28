@@ -1,11 +1,8 @@
-import React from "react";
+import {useState, React} from "react";
 
 import { Route, Routes } from "react-router-dom";
 
-import {
-  CssBaseline,
-  ThemeProvider,
-} from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 
 import "./App.css";
 import theme from "./theme";
@@ -16,23 +13,33 @@ import Issued from "./pages/Issued";
 import InTransit from "./pages/InTransit";
 import Recieved from "./pages/Recieved";
 import Completed from "./pages/Completed";
+import Welcome from "./pages/Welcome";
 
 function App() {
+
+
+  const [isLoggedIn, setLoggedIn] = useState(false);
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Routes>
-
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />} />
+        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
         <Route path="/issued" element={<Issued />} />
         <Route path="/intransit" element={<InTransit />} />
         <Route path="/recieved" element={<Recieved />} />
         <Route path="/completed" element={<Completed />} />
-
       </Routes>
     </ThemeProvider>
   );
 }
+
+const HomePage = ({ isLoggedIn, setLoggedIn }) => {
+  if (isLoggedIn) {
+    return <Dashboard setLoggedIn={setLoggedIn}/>;
+  }
+  return <Welcome setLoggedIn={setLoggedIn}/>;
+};
 
 export default App;
