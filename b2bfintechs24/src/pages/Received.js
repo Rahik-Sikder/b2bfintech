@@ -5,12 +5,12 @@ import { Grid, Typography, Container, Button, Stack } from "@mui/material";
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 
-const Recieved = () => {
+const Received = () => {
   return (
     <PageContainer>
       <Container maxWidth="lg" sx={{ marginTop: 5 }}>
         <Typography variant="h1" color="primary.dark">
-          Recieved
+          Received
         </Typography>
       </Container>
       <Stack spacing={4} marginY={5}>
@@ -21,4 +21,4 @@ const Recieved = () => {
   );
 };
 
-export default Recieved;
+export default Received;

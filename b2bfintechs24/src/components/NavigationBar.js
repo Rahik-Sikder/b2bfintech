@@ -14,7 +14,7 @@ const links = {
   Dashboard: "/",
   Issued: "/issued",
   "In-Transit": "/intransit",
-  Recieved: "/recieved",
+  Received: "/received",
   Completed: "/completed",
 };
 
@@ -33,7 +33,7 @@ const NavigationBar = ({ width }) => {
             </Typography>
           </Link>
         </ListItem>
-        {["Dashboard", "Issued", "In-Transit", "Recieved", "Completed"].map(
+        {["Dashboard", "Issued", "In-Transit", "Received", "Completed"].map(
           (item, index) => {
             return (
               <Link to={links[item]} style={{ textDecoration: "none" }}>

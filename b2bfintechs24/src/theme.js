@@ -20,7 +20,7 @@ const theme = createTheme({
         },
         background: {
             default: "#F5F5F5"
-          },
+        },
     },
 
     typography: {
@@ -46,14 +46,14 @@ const theme = createTheme({
             },
         },
         MuiDrawer: {
-          styleOverrides: {
-            paper: {
-              backgroundColor: "#260064",
-              color: "#FFF"
+            styleOverrides: {
+                paper: {
+                    backgroundColor: "#260064",
+                    color: "#FFF"
+                }
             }
-          }
         },
-      }
+    }
 });
 
 

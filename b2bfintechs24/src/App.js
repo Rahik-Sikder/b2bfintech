@@ -1,4 +1,4 @@
-import {useState, React} from "react";
+import { useState, React } from "react";
 
 import { Route, Routes } from "react-router-dom";
 
@@ -11,7 +11,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Issued from "./pages/Issued";
 import InTransit from "./pages/InTransit";
-import Recieved from "./pages/Recieved";
+import Received from "./pages/Received";
 import Completed from "./pages/Completed";
 import Welcome from "./pages/Welcome";
 
@@ -28,7 +28,7 @@ function App() {
         <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
         <Route path="/issued" element={<Issued />} />
         <Route path="/intransit" element={<InTransit />} />
-        <Route path="/recieved" element={<Recieved />} />
+        <Route path="/received" element={<Received />} />
         <Route path="/completed" element={<Completed />} />
       </Routes>
     </ThemeProvider>
@@ -37,9 +37,9 @@ function App() {
 
 const HomePage = ({ isLoggedIn, setLoggedIn }) => {
   if (isLoggedIn) {
-    return <Dashboard setLoggedIn={setLoggedIn}/>;
+    return <Dashboard setLoggedIn={setLoggedIn} />;
   }
-  return <Welcome setLoggedIn={setLoggedIn}/>;
+  return <Welcome setLoggedIn={setLoggedIn} />;
 };
 
 export default App;
