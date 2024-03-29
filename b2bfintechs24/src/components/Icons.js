@@ -61,7 +61,7 @@ const GoogleLoginIcon = ({ onClick }) => {
 const AppleLoginIcon = ({ onClick }) => {
   return (
     <IconButton onClick={onClick}>
-      <Avatar fontSize="large" sx={{ backgroundColor: "#000000" }}>
+      <Avatar sx={{ backgroundColor: "#000000", width: 36, height: 36  }}>
         <AppleIcon color="white" />
       </Avatar>
     </IconButton>
@@ -71,7 +71,7 @@ const AppleLoginIcon = ({ onClick }) => {
 const FacebookLoginIcon = ({ onClick }) => {
   return (
     <IconButton onClick={onClick}>
-      <Avatar fontSize="large" sx={{ backgroundColor: "#039BE5" }}>
+      <Avatar fontSize="large" sx={{ backgroundColor: "#039BE5",  width: 36, height: 36 }}>
         <FacebookIcon
           sx={{ color: "white", backgroundColor: "#039BE5"}}
         />

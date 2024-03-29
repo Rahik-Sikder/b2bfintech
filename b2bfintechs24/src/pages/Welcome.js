@@ -12,9 +12,11 @@ import {
   Divider,
 } from "@mui/material";
 
-import {GoogleLoginIcon, AppleLoginIcon, FacebookLoginIcon} from "../components/Icons";
-
-
+import {
+  GoogleLoginIcon,
+  AppleLoginIcon,
+  FacebookLoginIcon,
+} from "../components/Icons";
 
 const Welcome = ({ setLoggedIn }) => {
   const onLoginPress = () => {
@@ -59,32 +61,33 @@ const Welcome = ({ setLoggedIn }) => {
               </Stack>
 
               <Container>
-                <Stack spacing={0}>
-                  <Divider>
-                    <Typography variant="body" color="primary.dark">
-                      or continue with
-                    </Typography>
-                  </Divider>
-                  <Stack
-                    direction="row"
-                    spacing={1}
-                    sx={{ display: "flex", justifyContent: "center" }}
+                <Stack spacing={2}>
+                  <Box>
+                    <Divider>
+                      <Typography variant="body" color="primary.dark">
+                        or continue with
+                      </Typography>
+                    </Divider>
+                    <Stack
+                      direction="row"
+                      spacing={1}
+                      sx={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <AppleLoginIcon />
+                      <GoogleLoginIcon />
+                      <FacebookLoginIcon />
+                    </Stack>
+                  </Box>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    sx={{ padding: 2, borderRadius: 10 }}
+                    onClick={onLoginPress}
                   >
-                    <GoogleLoginIcon />
-                    <AppleLoginIcon />
-                    <FacebookLoginIcon />
-
-                  </Stack>
+                    Login
+                  </Button>
                 </Stack>
               </Container>
-              <Button
-                variant="contained"
-                color="primary"
-                sx={{ padding: 1 }}
-                onClick={onLoginPress}
-              >
-                Login
-              </Button>
             </Stack>
           </Container>
         </Grid>
