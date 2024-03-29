@@ -12,12 +12,11 @@ import {
   Divider,
 } from "@mui/material";
 
-import GoogleIcon from "@mui/icons-material/Google";
-import FacebookOutlinedIcon from "@mui/icons-material/FacebookOutlined";
-import AppleIcon from "@mui/icons-material/Apple";
+import {GoogleLoginIcon, AppleLoginIcon, FacebookLoginIcon} from "../components/Icons";
+
+
 
 const Welcome = ({ setLoggedIn }) => {
-
   const onLoginPress = () => {
     setLoggedIn(true);
   };
@@ -39,7 +38,7 @@ const Welcome = ({ setLoggedIn }) => {
               // backgroundColor: "gray",
             }}
           >
-            <Stack spacing={3}>
+            <Stack spacing={2}>
               <Box sx={{ justifyContent: "left" }}>
                 <Typography variant="h1" color="primary.dark">
                   Welcome,
@@ -60,7 +59,7 @@ const Welcome = ({ setLoggedIn }) => {
               </Stack>
 
               <Container>
-                <Stack spacing={1}>
+                <Stack spacing={0}>
                   <Divider>
                     <Typography variant="body" color="primary.dark">
                       or continue with
@@ -68,12 +67,13 @@ const Welcome = ({ setLoggedIn }) => {
                   </Divider>
                   <Stack
                     direction="row"
-                    spacing={2}
+                    spacing={1}
                     sx={{ display: "flex", justifyContent: "center" }}
                   >
-                    <GoogleIcon fontSize="large" color="green" />
-                    <FacebookOutlinedIcon fontSize="large" />
-                    <AppleIcon fontSize="large" />
+                    <GoogleLoginIcon />
+                    <AppleLoginIcon />
+                    <FacebookLoginIcon />
+
                   </Stack>
                 </Stack>
               </Container>
