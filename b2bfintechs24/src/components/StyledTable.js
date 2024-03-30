@@ -16,7 +16,7 @@ across multiple pages
 const StyledTable = ({ children, rows, columns }) => {
  return(
     <Box>
-        table
+        made a change to table
     </Box>
  )
 }
