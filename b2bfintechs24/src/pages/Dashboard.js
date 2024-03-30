@@ -15,24 +15,25 @@ const Dashboard = ({setLoggedIn}) => {
   return (
     <PageContainer>
       <Container maxWidth="lg" sx={{ marginTop: 5 }}>
-        <Grid container flex={1} alignItems="center" justifyContent="right">
-          <Grid item xs={9}>
+        <Grid container flex={1} spacing={1} alignItems="center" justifyContent="right">
+          <Grid item xs={12} md={8}>
             <Typography variant="h1" color="primary.dark">
               Dashboard
             </Typography>
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={3} md={2}>
             <Button variant="contained" color="primary" sx={{ paddingX: 4 }}>
-              Create New
+              New
             </Button>
           </Grid>
-          <Grid item xs={1}>
+          <Grid item xs={3} md={2}>
             {/* TEMPORARY LOGOUT BUTTON */}
             <Button variant="contained" color="primary" sx={{ paddingX: 4 }}
               onClick={()=> setLoggedIn(false)}>
               Logout
             </Button>
           </Grid>
+          <Grid item xs={6} />
         </Grid>
       </Container>
       <MainContent />
@@ -43,13 +44,13 @@ const Dashboard = ({setLoggedIn}) => {
 const MainContent = () => {
   return (
     <Grid container sx={{ marginTop: 2 }} spacing={4}>
-      <Grid item xs={5}>
+      <Grid item xs={12} md={5}>
         <Stack spacing={4}>
           <SimplePaper height={300} />
           <SimplePaper height={200} />
         </Stack>
       </Grid>
-      <Grid item xs={7}>
+      <Grid item xs={12} md={7}>
         <Stack spacing={4}>
           <SimplePaper height={150} />
           <SimplePaper height={350} />
