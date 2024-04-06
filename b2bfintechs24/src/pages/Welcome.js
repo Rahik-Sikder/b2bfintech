@@ -53,6 +53,7 @@ const Welcome = ({ setLoggedIn }) => {
           paddingX: 12, 
           backgroundImage: `${encodedFirstSvg}, ${encodedSecondSvg}`,
           backgroundSize: '150%, 110%',
+          backgroundPosition: 'left -5%, left -15% bottom',
           backgroundRepeat: 'no-repeat, no-repeat',
           backgroundColor: '#260064',
           height: '100vh',
