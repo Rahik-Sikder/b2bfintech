@@ -5,6 +5,7 @@ const theme = createTheme({
     palette: {
         primary: {
             main: "#6100FF",
+            light: "#EFE4FF",
             dark: "#260064",
             contrastText: "FFF"
         },
@@ -29,6 +30,11 @@ const theme = createTheme({
             fontFamily: "Rubik",
             fontWeight: 400,
             fontSize: "3rem"
+        },
+        h4: {
+            fontFamily: "Kanit",
+            fontWeight: 200,
+            fontSize: "2rem"
         },
         h5: {
             fontFamily: "Kanit",

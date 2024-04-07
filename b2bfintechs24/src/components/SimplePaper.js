@@ -2,15 +2,17 @@ import React from "react";
 
 import { Paper } from "@mui/material";
 
-const SimplePaper = ({ height, children }) => {
+const SimplePaper = ({ height, color, padding = 5, children }) => {
   return (
     <Paper
       sx={{
         height: height,
         maxWidth: "100%",
         display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
+        backgroundColor: color,
+        // justifyContent: "center",
+        // alignItems: "center",
+        padding: padding,
       }}
     >
       {children}

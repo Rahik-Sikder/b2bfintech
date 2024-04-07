@@ -16,24 +16,16 @@ const Dashboard = ({setLoggedIn}) => {
     <PageContainer>
       <Container maxWidth="lg" sx={{ marginTop: 5 }}>
         <Grid container flex={1} spacing={1} alignItems="center" justifyContent="right">
-          <Grid item xs={12} md={8}>
+          <Grid item xs={12} md={10}>
             <Typography variant="h1" color="primary.dark">
               Dashboard
             </Typography>
           </Grid>
-          <Grid item xs={3} md={2}>
+          <Grid item xs={12} md={2}>
             <Button variant="contained" color="primary" sx={{ paddingX: 4 }}>
               New
             </Button>
           </Grid>
-          <Grid item xs={3} md={2}>
-            {/* TEMPORARY LOGOUT BUTTON */}
-            <Button variant="contained" color="primary" sx={{ paddingX: 4 }}
-              onClick={()=> setLoggedIn(false)}>
-              Logout
-            </Button>
-          </Grid>
-          <Grid item xs={6} />
         </Grid>
       </Container>
       <MainContent />
@@ -59,7 +51,5 @@ const MainContent = () => {
     </Grid>
   );
 };
-
-
 
 export default Dashboard;
