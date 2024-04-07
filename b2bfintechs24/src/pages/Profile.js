@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Typography, Container, Button, Stack } from "@mui/material";
+import { Typography, Container, Button, Stack } from "@mui/material";
 
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";

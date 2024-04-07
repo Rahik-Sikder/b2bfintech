@@ -37,7 +37,7 @@ const NavigationBar = ({ width }) => {
         {["Dashboard", "Issued", "In-Transit", "Received", "Completed", "Profile"].map(
           (item, index) => {
             return (
-              <Link to={links[item]} style={{ textDecoration: "none" }}>
+              <Link to={links[item]} style={{ textDecoration: "none" }} key={item}>
                 <ListItemButton
                   key={item}
                   sx={{

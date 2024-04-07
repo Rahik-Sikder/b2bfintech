@@ -1,14 +1,13 @@
-import { useState, React } from "react";
-
+import { React } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
+// Styling
 import "./App.css";
 import theme from "./theme";
 
+// Pages
 import Dashboard from "./pages/Dashboard";
-import Login from "./pages/Login";
 import Issued from "./pages/Issued";
 import InTransit from "./pages/InTransit";
 import Received from "./pages/Received";
@@ -16,8 +15,15 @@ import Completed from "./pages/Completed";
 import Welcome from "./pages/Welcome";
 import Profile from "./pages/Profile";
 
+// Hooks
+// TODO: Needs encrypting once actual users are created
+// Also can delete useBoolStorageState later, and verify logged in 
+// by setting user with useStorageState and seeing if user == null
+import { useBoolStorageState } from "./hooks/useStorageState";
+
 function App() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
+
+  const [isLoggedIn, setLoggedIn] = useBoolStorageState("isUserLoggedIn", false);
 
   return (
     <ThemeProvider theme={theme}>
@@ -29,7 +35,6 @@ function App() {
             <HomePage isLoggedIn={isLoggedIn} setLoggedIn={setLoggedIn} />
           }
         />
-        <Route path="/login" element={<Login setLoggedIn={setLoggedIn} />} />
         <Route
           path="/issued"
           element={
