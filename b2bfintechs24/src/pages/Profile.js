@@ -5,7 +5,13 @@ import { Typography, Container, Button, Stack } from "@mui/material";
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 
+import { getAuth } from "firebase/auth";
+
 const Profile = ({ setLoggedIn }) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  const displayName = user.displayName;
+
   return (
     <PageContainer>
       <Container maxWidth="lg" sx={{ marginTop: 5 }}>
@@ -16,7 +22,7 @@ const Profile = ({ setLoggedIn }) => {
           <SimplePaper marginTop={5}>
             <SimplePaper padding={3} color="primary.light">
               <Typography variant="h4" color="primary.dark">
-                Company Name
+                {displayName}
               </Typography>
             </SimplePaper>
           </SimplePaper>

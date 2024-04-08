@@ -26,6 +26,11 @@ const theme = createTheme({
 
     typography: {
         fontFamily: ["Rubik", "Kanit"],
+        welcome: {
+            fontFamily: "Rubik",
+            fontWeight: 400,
+            fontSize: "4rem"
+        },
         h1: {
             fontFamily: "Rubik",
             fontWeight: 400,
