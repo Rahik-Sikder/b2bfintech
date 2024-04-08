@@ -1,5 +1,3 @@
-import React from "react";
-
 import { auth } from "./firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 
@@ -8,6 +6,7 @@ const basicSignIn = (email, password, setLoggedIn, setErrorMessage) => {
     .then((userCredential) => {
       // Signed in
       const user = userCredential.user;
+      console.log(user);
       console.log(userCredential);
       setLoggedIn(true);
       // ...
@@ -15,6 +14,7 @@ const basicSignIn = (email, password, setLoggedIn, setErrorMessage) => {
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorCode);
       console.log(errorMessage);
       setErrorMessage(errorMessage)
     });

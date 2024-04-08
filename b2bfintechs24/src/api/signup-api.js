@@ -1,5 +1,3 @@
-import React from "react";
-
 import { auth } from "./firebase";
 import { updateProfile } from "firebase/auth";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -27,6 +25,7 @@ const basicSignUp = (
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
+      console.log(errorCode);
       console.log(errorMessage);
       setErrorMessage(errorMessage);
     });
