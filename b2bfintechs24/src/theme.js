@@ -36,6 +36,11 @@ const theme = createTheme({
             fontWeight: 400,
             fontSize: "3rem"
         },
+        h3: {
+            fontFamily: "Kanit",
+            fontWeight: 200,
+            fontSize: "2.25rem"
+        },
         h4: {
             fontFamily: "Kanit",
             fontWeight: 200,

@@ -2,15 +2,15 @@ import React from "react";
 
 import { Paper } from "@mui/material";
 
-const SimplePaper = ({ height, color, padding = 5, children, justifyContent="center"  }) => {
+const SimplePaper = ({ orderNumber, onConfirm, onReject }) => {
   return (
     <Paper
       sx={{
-        height: height,
+        height: 50,
         maxWidth: "100%",
         display: "flex",
         backgroundColor: color,
-        justifyContent: justifyContent,
+        // justifyContent: "center",
         // alignItems: "center",
         padding: padding,
       }}
