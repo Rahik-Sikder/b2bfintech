@@ -1,9 +1,8 @@
 import React from "react";
-
-import { Grid, Typography, Container, Button, Stack } from "@mui/material";
-
+import { Typography, Container, Stack } from "@mui/material";
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
+import StyledTable from "../components/StyledTable";
 
 const Issued = () => {
   return (
@@ -14,7 +13,8 @@ const Issued = () => {
         </Typography>
       </Container>
       <Stack spacing={4} marginTop={5}>
-        <SimplePaper height={300} />
+        {/* pass in parameters for rows and columns */}
+        <StyledTable numRows={5} numColumns={3} />
         <SimplePaper height={200} />
       </Stack>
     </PageContainer>
