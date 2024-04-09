@@ -19,6 +19,10 @@ const theme = createTheme({
             main: "#260064",
             contrastText: "FFF"
         },
+        gray_paper: {
+            main: "B9B9B9",
+            contrastText: "000"
+        },
         background: {
             default: "#F5F5F5"
         },
@@ -50,6 +54,11 @@ const theme = createTheme({
             fontFamily: "Kanit",
             fontWeight: 200,
             fontSize: "1.25rem"
+        },
+        h6: {
+            fontFamily: "Kanit",
+            fontWeight: 300,
+            fontSize: "1.40rem"
         }
     },
 

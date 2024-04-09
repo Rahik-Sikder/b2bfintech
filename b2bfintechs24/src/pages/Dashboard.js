@@ -4,6 +4,7 @@ import { Box, Grid, Typography, Stack } from "@mui/material";
 
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
+import OrderItem from "../components/OrderItem";
 
 const Dashboard = ({ setLoggedIn }) => {
   return (
@@ -39,8 +40,15 @@ const MainContent = () => {
 
 const ReturnsAwaiting = () => {
   return (
-    <SimplePaper height={400}>
-      <Typography variant="h3">Returns Awaiting Review</Typography>
+    <SimplePaper height={400} color="#B9B9B9">
+      <Stack spacing={2}>
+        <Box sx={{ justifyItems: "center" }}>
+          <Typography variant="h3">Returns Awaiting Review</Typography>
+        </Box>
+        {[236, 311, 298, 309, 312, 500, 412, 770].map((item) => {
+          return <OrderItem orderNumber={item} />;
+        })}
+      </Stack>
     </SimplePaper>
   );
 };

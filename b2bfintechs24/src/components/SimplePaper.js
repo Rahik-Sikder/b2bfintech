@@ -6,11 +6,10 @@ const SimplePaper = ({ height, color, padding = 5, children, justifyContent="cen
   return (
     <Paper
       sx={{
-        height: height,
+        minHeight: height,
         maxWidth: "100%",
-        display: "flex",
         backgroundColor: color,
-        justifyContent: justifyContent,
+        // justifyItems: "center",
         // alignItems: "center",
         padding: padding,
       }}
