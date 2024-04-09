@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Box, Container, Stack } from "@mui/material";
 
 import PageContainer from '../components/PageContainer';
 import SimplePaper from '../components/SimplePaper';
