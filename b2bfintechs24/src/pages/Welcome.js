@@ -31,7 +31,7 @@ const Welcome = ({ setLoggedIn }) => {
   const [notSignUp, setNotSignUp] = React.useState(true);
 
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
+    <Box sx={{ display: "flex", height: "100vh", backgroundColor: "white" }}>
       <CssBaseline />
       <Grid container flex={1}>
         <Grid
@@ -69,13 +69,16 @@ const Welcome = ({ setLoggedIn }) => {
           item
           xs={12}
           md={6}
-          sx={{ paddingY: 30, paddingX: 20, backgroundColor: "white" }}
+          sx={{ marginY: "auto", paddingX: 20, backgroundColor: "white" }}
         >
-          {notSignUp ? (
-            <LoginPanel setLoggedIn={setLoggedIn} setIfLogin={setNotSignUp} />
-          ) : (
-            <SignUpPanel setLoggedIn={setLoggedIn} setIfLogin={setNotSignUp} />
-          )}
+            {notSignUp ? (
+              <LoginPanel setLoggedIn={setLoggedIn} setIfLogin={setNotSignUp} />
+            ) : (
+              <SignUpPanel
+                setLoggedIn={setLoggedIn}
+                setIfLogin={setNotSignUp}
+              />
+            )}
         </Grid>
       </Grid>
     </Box>
