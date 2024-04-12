@@ -10,7 +10,7 @@ const SimplePaper = ({ height, color, padding = 5, children, justifyContent="cen
         backgroundColor: color,
         padding: padding,
         display: "flex",
-        justifyContent: "flex-start", // Changed from center to flex-start
+        justifyContent: justifyContent, 
         alignItems: "center",
       }}
     >

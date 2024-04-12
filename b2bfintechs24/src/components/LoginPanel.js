@@ -64,13 +64,14 @@ const LoginPanel = ({ setLoggedIn, setIfLogin }) => {
           <TextField
             id="outlined-basic"
             label="Email"
-            variant="outlined"
+            variant="outlined" 
             onChange={handleEmail}
           />
           <TextField
             id="outlined-basic"
             label="Password"
             variant="outlined"
+            type="password"
             onChange={handlePassword}
           />
         </Stack>

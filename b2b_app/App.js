@@ -1,6 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
+/*
+
+Check out and use:
+
+https://react-native-vision-camera.com/docs/guides
+
+https://react-native-vision-camera.com/docs/guides/code-scanning
+
+
+*/
+
+
 export default function App() {
   return (
     <View style={styles.container}>
