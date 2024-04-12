@@ -23,6 +23,7 @@ const PageContainer = ({ children }) => {
       </Box>
       <Box
         component="main"
+        flex
         sx={{
           flexGrow: 1,
           width: { sm: `calc(100% - ${drawerWidth}px)` },

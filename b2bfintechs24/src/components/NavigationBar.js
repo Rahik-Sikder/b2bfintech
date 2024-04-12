@@ -18,6 +18,7 @@ const links = {
   "In-Transit": "/intransit",
   Received: "/received",
   Completed: "/completed",
+  Profile: "/profile",
 };
 
 const NavigationBar = ({ width }) => {
@@ -49,10 +50,10 @@ const NavigationBar = ({ width }) => {
               ReClaim
             </Typography>
         </ListItem>
-        {["Dashboard", "Issued", "In-Transit", "Received", "Completed"].map(
+        {["Dashboard", "Issued", "In-Transit", "Received", "Completed", "Profile"].map(
           (item, index) => {
             return (
-              <Link to={links[item]} style={{ textDecoration: "none" }}>
+              <Link to={links[item]} style={{ textDecoration: "none" }} key={item}>
                 <ListItemButton
                   key={item}
                   sx={{
