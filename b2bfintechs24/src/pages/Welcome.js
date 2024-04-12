@@ -1,4 +1,5 @@
 import React from "react";
+import logoImage from '../logo.png';
 
 import { Grid, Typography, Box, CssBaseline } from "@mui/material";
 
@@ -34,36 +35,42 @@ const Welcome = ({ setLoggedIn }) => {
     <Box sx={{ display: "flex", height: "100vh", backgroundColor: "white" }}>
       <CssBaseline />
       <Grid container flex={1}>
-        <Grid
-          item
-          xs={12}
+      <Grid item 
+          xs={12} 
           md={6}
           sx={{
-            paddingY: 20,
-            paddingX: 12,
+            paddingY: 20, 
+            paddingX: 12, 
             backgroundImage: `${encodedFirstSvg}, ${encodedSecondSvg}`,
-            backgroundSize: "150%, 110%",
-            backgroundPosition: "left -5%, left -15% bottom",
-            backgroundRepeat: "no-repeat, no-repeat",
-            backgroundColor: "#260064",
-            height: "100vh",
-            display: "flex",
-            alignItems: "center",
+            backgroundSize: '150%, 110%',
+            backgroundPosition: 'left -5%, left -15% bottom',
+            backgroundRepeat: 'no-repeat, no-repeat',
+            backgroundColor: '#260064',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center', // Add this to center the content
           }}
-        >
-          <Typography
-            variant="h1"
-            sx={{
-              fontFamily: "Kanit",
-              fontWeight: 200,
-              fontSize: "96px",
-              color: "white",
-              justifyContent: "center",
-              paddingLeft: "20%",
-            }}
           >
-            ReClaim
-          </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <img 
+                src={logoImage}
+                alt="Logo"
+                style={{ width: 'auto', height: '100px' }} // Adjust size as needed
+              />
+              <Typography 
+                variant="h1" 
+                sx={{ 
+                  fontFamily: 'Kanit',
+                  fontWeight: 200,
+                  fontSize: '96px',
+                  color: 'white',
+                  marginLeft: '20px', // Add some space between the image and the text
+                }}
+              >
+                ReClaim
+              </Typography>
+            </Box>
         </Grid>
         <Grid
           item
