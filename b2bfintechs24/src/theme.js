@@ -5,6 +5,7 @@ const theme = createTheme({
     palette: {
         primary: {
             main: "#6100FF",
+            light: "#EFE4FF",
             dark: "#260064",
             contrastText: "FFF"
         },
@@ -18,6 +19,10 @@ const theme = createTheme({
             main: "#260064",
             contrastText: "FFF"
         },
+        gray_paper: {
+            main: "B9B9B9",
+            contrastText: "000"
+        },
         background: {
             default: "#F5F5F5"
         },
@@ -25,15 +30,35 @@ const theme = createTheme({
 
     typography: {
         fontFamily: ["Rubik", "Kanit"],
+        welcome: {
+            fontFamily: "Rubik",
+            fontWeight: 400,
+            fontSize: "4rem"
+        },
         h1: {
             fontFamily: "Rubik",
             fontWeight: 400,
             fontSize: "3rem"
         },
+        h3: {
+            fontFamily: "Kanit",
+            fontWeight: 200,
+            fontSize: "2.25rem"
+        },
+        h4: {
+            fontFamily: "Kanit",
+            fontWeight: 200,
+            fontSize: "2rem"
+        },
         h5: {
             fontFamily: "Kanit",
             fontWeight: 200,
             fontSize: "1.25rem"
+        },
+        h6: {
+            fontFamily: "Kanit",
+            fontWeight: 300,
+            fontSize: "1.40rem"
         }
     },
 

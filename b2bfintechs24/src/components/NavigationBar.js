@@ -1,4 +1,6 @@
 import React from "react";
+import logoImage from '../logo.png';
+
 import {
   Drawer,
   List,
@@ -16,6 +18,7 @@ const links = {
   "In-Transit": "/intransit",
   Received: "/received",
   Completed: "/completed",
+  Profile: "/profile",
 };
 
 const NavigationBar = ({ width }) => {
@@ -26,17 +29,31 @@ const NavigationBar = ({ width }) => {
   return (
     <Drawer variant="permanent" PaperProps={{ style: drawerStyles }}>
       <List>
-        <ListItem sx={{ marginTop: 2, marginBottom: 8 }}>
+        <ListItem sx={{ marginTop: 2, marginBottom: 8, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Link to="/">
-            <Typography variant="h5" color="white" flexGrow={1}>
-              LOGO HERE
-            </Typography>
+            <img 
+                src={logoImage} 
+                alt="Logo"
+                style={{ width: 'auto', height: '40px' }} // Adjust the size as needed
+              />
           </Link>
+          <Typography 
+              variant="h1" 
+              sx={{ 
+                fontFamily: 'Kanit',
+                fontWeight: 200,
+                fontSize: '28px',
+                color: 'white',
+                marginLeft: '5px', // Add some space between the image and the text
+              }}
+            >
+              ReClaim
+            </Typography>
         </ListItem>
-        {["Dashboard", "Issued", "In-Transit", "Received", "Completed"].map(
+        {["Dashboard", "Issued", "In-Transit", "Received", "Completed", "Profile"].map(
           (item, index) => {
             return (
-              <Link to={links[item]} style={{ textDecoration: "none" }}>
+              <Link to={links[item]} style={{ textDecoration: "none" }} key={item}>
                 <ListItemButton
                   key={item}
                   sx={{

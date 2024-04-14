@@ -1,5 +1,7 @@
 import React from "react";
-import { Typography, Container, Stack, Button, Box } from "@mui/material";
+
+import { Typography, Box, Button, Stack } from "@mui/material";
+
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 import StyledTable from "../components/StyledTable";
@@ -7,11 +9,11 @@ import StyledTable from "../components/StyledTable";
 const Issued = () => {
   return (
     <PageContainer>
-      <Container maxWidth="lg" sx={{ marginTop: 5 }}>
+      <Box sx={{ marginTop: 5, paddingX: 4 }}>
         <Typography variant="h1" color="primary.dark">
           Issued
         </Typography>
-      </Container>
+      </Box>
       <Stack spacing={4} marginTop={5} position="relative">
         {/* Button */}
         <Button
