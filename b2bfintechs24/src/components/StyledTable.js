@@ -2,26 +2,24 @@ import React from "react";
 import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 const StyledTable = ({ numRows, numColumns }) => {
-  // Generate an array with numbers from 1 to numRows for creating empty rows
   const rowsArray = Array.from({ length: numRows }, (_, index) => index + 1);
+  const columnsArray = Array.from({ length: numColumns }, (_, index) => index + 1);
 
   return (
     <TableContainer component={Paper}>
       <Table>
-        <TableHead>
+        <TableHead style={{ backgroundColor: "#C8FFEB", borderBottom: "1px solid #C8FFEB" }}>
           <TableRow>
-            {/* Generate table header cells based on the number of columns */}
-            {Array.from({ length: numColumns }, (_, index) => (
-              <TableCell key={index}></TableCell>
+            {columnsArray.map((columnNumber) => (
+              <TableCell key={columnNumber} style={{ borderBottom: "1px solid #00B981", borderLeft: "1px solid #00B981", borderRight: "1px solid #00B981" }}>Column {columnNumber}</TableCell>
             ))}
           </TableRow>
         </TableHead>
-        <TableBody>
+        <TableBody style={{ borderTop: "none" }}>
           {rowsArray.map((rowNumber) => (
-            <TableRow key={rowNumber} style={{ backgroundColor: rowNumber === 1 ? "#C8FFEB" : "inherit" }}>
-              {/* Generate empty cells based on the number of columns */}
-              {Array.from({ length: numColumns }, (_, index) => (
-                <TableCell key={index}></TableCell>
+            <TableRow key={rowNumber}>
+              {columnsArray.map((columnNumber) => (
+                <TableCell key={columnNumber} style={{ borderBottom: "1px solid #00B981", borderRight: "1px solid #00B981" }}></TableCell>
               ))}
             </TableRow>
           ))}
