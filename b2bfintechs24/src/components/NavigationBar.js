@@ -22,12 +22,8 @@ const links = {
 };
 
 const NavigationBar = ({ width }) => {
-  const drawerStyles = {
-    width: width,
-  };
 
   return (
-    <Drawer variant="permanent" PaperProps={{ style: drawerStyles }}>
       <List>
         <ListItem sx={{ marginTop: 2, marginBottom: 8, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Link to="/">
@@ -72,7 +68,6 @@ const NavigationBar = ({ width }) => {
           }
         )}
       </List>
-    </Drawer>
   );
 };
 
