@@ -22,7 +22,7 @@ const SearchForm = ({ navigation }) => {
     console.log("Searching...");
   };
 
-  const handleScan = () => {
+  const handleNavigation = () => {
     // Implement navigation to the scan page here
     console.log("Navigating to scan page...");
   };
@@ -54,7 +54,7 @@ const SearchForm = ({ navigation }) => {
         <Text style={styles.search_button_text}>Search</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={handleScan}>
+      <TouchableOpacity onPress={handleNavigation}>
         <Text style={{ marginTop: 20, textAlign: "center", fontSize: 20 }}>
           or{" "}
           <Text style={{ color: "#4E00CE", textDecorationLine: "underline" }}>

@@ -15,7 +15,7 @@ const Navigator = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName="Input_Page"
+        initialRouteName="Scan_Page"
       >
         <Stack.Screen name="Scan_Page" component={Scan_Page} />
         <Stack.Screen name="Input_Page" component={Input_Page} />
