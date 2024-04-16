@@ -3,7 +3,7 @@ import {
   View,
   Pressable,
   SafeAreaView,
-  ScrollView,
+  TouchableOpacity,
   StyleSheet,
 } from "react-native";
 import {
