@@ -27,24 +27,24 @@ const NavigationBar = ({ width }) => {
       <List>
         <ListItem sx={{ marginTop: 2, marginBottom: 8, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <Link to="/">
-            <img 
-                src={logoImage} 
-                alt="Logo"
-                style={{ width: 'auto', height: '40px' }} // Adjust the size as needed
-              />
+            <img
+              src={logoImage}
+              alt="Logo"
+              style={{ width: 'auto', height: '40px' }} // Adjust the size as needed
+            />
           </Link>
-          <Typography 
-              variant="h1" 
-              sx={{ 
-                fontFamily: 'Kanit',
-                fontWeight: 200,
-                fontSize: '28px',
-                color: 'white',
-                marginLeft: '5px', // Add some space between the image and the text
-              }}
-            >
-              ReClaim
-            </Typography>
+          <Typography
+            variant="h1"
+            sx={{
+              fontFamily: 'Kanit',
+              fontWeight: 200,
+              fontSize: '28px',
+              color: 'white',
+              marginLeft: '5px', // Add some space between the image and the text
+            }}
+          >
+            ReClaim
+          </Typography>
         </ListItem>
         {["Dashboard", "Issued", "In-Transit", "Received", "Completed", "Profile"].map(
           (item, index) => {

@@ -32,7 +32,9 @@ const Issued = () => {
         {/* Spacer */}
         <Box height="40px" /> {/* Adjust height as needed */}
         {/* Table */}
-        <StyledTable numRows={7} numColumns={5} />
+        <Box border="1px solid #00B981" borderRadius="4px" overflow="hidden"> {/* Added overflow:hidden to prevent double border */}
+          <StyledTable numRows={7} numColumns={5} />
+        </Box>
         {/* Other components */}
         <SimplePaper height={200} />
       </Stack>
