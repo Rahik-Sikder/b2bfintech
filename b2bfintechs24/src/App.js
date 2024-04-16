@@ -8,10 +8,10 @@ import theme from "./theme";
 
 // Pages
 import Dashboard from "./pages/Dashboard";
-import Issued from "./pages/Issued";
-import InTransit from "./pages/InTransit";
+import Pending from "./pages/Pending";
+import Delivery from "./pages/Delivery";
 import Received from "./pages/Received";
-import Completed from "./pages/Completed";
+import History from "./pages/History";
 import Welcome from "./pages/Welcome";
 import Profile from "./pages/Profile";
 
@@ -36,18 +36,18 @@ function App() {
           }
         />
         <Route
-          path="/issued"
+          path="/pending"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Issued />
+              <Pending />
             </ProtectedRoute>
           }
         />
         <Route
-          path="/intransit"
+          path="/delivery"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <InTransit />
+              <Delivery />
             </ProtectedRoute>
           }
         />
@@ -60,10 +60,10 @@ function App() {
           }
         />
         <Route
-          path="/completed"
+          path="/history"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Completed />
+              <History />
             </ProtectedRoute>
           }
         />

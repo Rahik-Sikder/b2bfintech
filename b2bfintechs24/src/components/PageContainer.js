@@ -1,7 +1,6 @@
 import React from "react";
 
-import logoImage from '../logo.png';
-
+import logoImage from "../logo.png";
 
 import {
   Box,
@@ -10,13 +9,22 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  Link,
+  Button
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { makeStyles } from "@mui/styles";
+
+import { useNavigate } from "react-router-dom";
 
 import NavigationBar from "../components/NavigationBar";
 
 const drawerWidth = 200;
+
+const useStyles = makeStyles({
+  button: {
+    textTransform: "none",
+  },
+});
 
 const PageContainer = ({ children }) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -37,6 +45,14 @@ const PageContainer = ({ children }) => {
     }
   };
 
+  // For the logo button
+  const classes = useStyles();
+  const navigate = useNavigate();
+
+  const handleLogoPress = () => {
+    navigate("/");
+  };
+
   return (
     <Box sx={{ display: "flex", height: "100vh" }}>
       <AppBar
@@ -45,11 +61,11 @@ const PageContainer = ({ children }) => {
           display: { xs: "block", sm: "none" },
           ml: { sm: `${drawerWidth}px` },
           backgroundColor: "#260064",
-                    color: "#FFF",
+          color: "#FFF",
         }}
       >
         <Toolbar>
-        <IconButton
+          <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
@@ -58,25 +74,26 @@ const PageContainer = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-        <Link to="/">
-            <img 
-                src={logoImage} 
-                alt="Logo"
-                style={{ width: 'auto', height: '40px' }} // Adjust the size as needed
-              />
-          </Link>
-          <Typography 
-              variant="h1" 
-              sx={{ 
-                fontFamily: 'Kanit',
+          <Button className={classes.button} onClick={handleLogoPress}>
+            <img
+              src={logoImage}
+              alt="Logo"
+              style={{ width: "auto", height: "40px" }} // Adjust the size as needed
+            />
+
+            <Typography
+              variant="h1"
+              sx={{
+                fontFamily: "Kanit",
                 fontWeight: 200,
-                fontSize: '28px',
-                color: 'white',
-                marginLeft: '5px', // Add some space between the image and the text
+                fontSize: "28px",
+                color: "white",
+                marginLeft: "5px", // Add some space between the image and the text
               }}
             >
               ReClaim
             </Typography>
+          </Button>
         </Toolbar>
       </AppBar>
       <Box
@@ -126,13 +143,11 @@ const PageContainer = ({ children }) => {
           flexGrow: 1,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           paddingX: 4,
-          paddingTop: {xs: 4, sm: 0},
+          paddingTop: { xs: 4, sm: 0 },
         }}
       >
         {children}
-        <Box sx={{marginTop:5, height:2}}>
-
-        </Box>
+        <Box sx={{ marginTop: 5, height: 2 }}></Box>
       </Box>
     </Box>
   );
