@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Typography,
   Box,
@@ -16,10 +16,25 @@ import {
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 
+import { getPendingData } from "../api/get-data";
+
 const Pending = () => {
   const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
+
+  useEffect( () => {
+
+    async function fetchData() {
+      const data = await getPendingData();
+      console.log(data);
+    }
+    fetchData();
+
+    return () => {
+      // Perform any clean-up here if necessary
+    };
+  }, []); 
 
   const handleChangeRows = (event) => {
     setNumRows(event.target.value);
