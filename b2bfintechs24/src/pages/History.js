@@ -5,7 +5,7 @@ import { Typography, Box, Stack } from "@mui/material";
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 
-const Completed = () => {
+const History = () => {
   return (
     <PageContainer>
       <Box sx={{ marginTop: 5, paddingX: 4 }}>
@@ -21,4 +21,4 @@ const Completed = () => {
   );
 };
 
-export default Completed;
+export default History;

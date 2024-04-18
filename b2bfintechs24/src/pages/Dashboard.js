@@ -30,8 +30,20 @@ const MainContent = () => {
       </Grid>
       <Grid item xs={12} md={12} lg={7}>
         <Stack spacing={4}>
+          <SimplePaper marginTop={5}>
+            <SimplePaper height={250} padding={3} color="primary.light">
+              <Box textAlign="center">
+                <Typography gutterBottom variant="h4" color="primary.dark">
+                  Deliviers En Route
+                </Typography>
+                <Typography variant="h2" color="primary.dark">
+                  15
+                </Typography>
+              </Box>
+            </SimplePaper>
+            <DeliversEnroute />
+          </SimplePaper>
           <SimplePaper height={450} />
-          <SimplePaper height={250} />
         </Stack>
       </Grid>
     </Grid>
@@ -41,7 +53,7 @@ const MainContent = () => {
 const ReturnsAwaiting = () => {
   return (
     <SimplePaper height={400} color="#B9B9B9">
-      <Stack spacing={2}>
+      <Stack spacing={2} width={500}>
         <Box sx={{ justifyItems: "center" }}>
           <Typography variant="h3">Returns Awaiting Review</Typography>
         </Box>
@@ -50,6 +62,20 @@ const ReturnsAwaiting = () => {
         })}
       </Stack>
     </SimplePaper>
+  );
+};
+
+const DeliversEnroute = () => {
+  return (
+    <Box marginLeft={3}>
+      <SimplePaper color="#B9B9B9">
+        <Stack spacing={2}>
+          {[236, 311, 298].map((item) => {
+            return <OrderItem orderNumber={item} backgroundColor="#DEFFF5"/>;
+          })}
+        </Stack>
+      </SimplePaper>
+    </Box>
   );
 };
 

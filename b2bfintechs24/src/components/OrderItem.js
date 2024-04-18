@@ -6,26 +6,28 @@ import { Container, Stack, IconButton, Grid, Typography } from "@mui/material";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const SimplePaper = ({ orderNumber, onConfirm, onReject }) => {
+const SimplePaper = ({ orderNumber, onConfirm, onReject, backgroundColor="white" }) => {
   return (
     <Paper
       sx={{
         maxWidth: "100%",
-        backgroundColor: "white",
+        backgroundColor: backgroundColor,
         // justifyContent: "center",
         alignItems: "center",
-        padding: 1,
+        paddingY: 1,
+        paddingRight: 5,
+
       }}
     >
       <Grid container>
-        <Grid item xs={9}>
+        <Grid item xs={10}>
           <Container>
             <Typography variant="h6" color="primary.dark">
               Order #{orderNumber}
             </Typography>
           </Container>
         </Grid>
-        <Grid item xs={1}>
+        <Grid item xs={2}>
           <Stack direction="row">
             <IconButton aria-label="Confirm" onClick={onConfirm}>
               <TaskAltIcon color="success" />

@@ -6,7 +6,7 @@ import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 import StyledTable from "../components/StyledTable";
 
-const Issued = () => {
+const Delivery = () => {
   return (
     <PageContainer>
       <Box sx={{ marginTop: 5, paddingX: 4 }}>
@@ -42,4 +42,4 @@ const Issued = () => {
   );
 };
 
-export default Issued;
+export default Delivery;
