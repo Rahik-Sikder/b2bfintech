@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
+import Popup from "../components/Popup";
 
 import { getPendingData } from "../api/get-data";
 
@@ -22,6 +23,7 @@ const Pending = () => {
   const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [popupInfo, setPopupInfo] = useState(null);
 
   useEffect( () => {
 
@@ -71,6 +73,12 @@ const Pending = () => {
     }
 
     setSelectedRows(newSelected);
+    // Show popup with order number
+    setPopupInfo(rowNumber);
+  };
+
+  const handleClosePopup = () => {
+    setPopupInfo(null);
   };
 
   const isSelected = (rowNumber) => selectedRows.indexOf(rowNumber) !== -1;
@@ -80,7 +88,7 @@ const Pending = () => {
     const rows = [];
     for (let i = numRows; i >= 1; i--) {
       rows.push(
-        <TableRow key={i} selected={isSelected(i)}>
+        <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
           <TableCell padding="checkbox">
             <Checkbox
               checked={isSelected(i)}
@@ -210,6 +218,10 @@ const Pending = () => {
             <TableBody>{generateRows()}</TableBody>
           </Table>
         </Box>
+        {/* Pop-up with order information */}
+        {popupInfo && (
+          <Popup width={1045} height={753} orderNumber={popupInfo} onClose={handleClosePopup} />
+        )}
         {/* Other components */}
         <SimplePaper height={200} />
       </Stack>
