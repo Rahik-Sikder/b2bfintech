@@ -1,6 +1,6 @@
 
 
-const getPendingData = async () => {
+const getPendingData = async (setPendingData) => {
   fetch("http://localhost:4000/pendingData")
     .then((response) => {
       if (!response.ok) {
@@ -10,7 +10,8 @@ const getPendingData = async () => {
     })
     .then((data) => {
       // Handle the data received from the backend
-      console.log(data);
+      // console.log(data.orders);
+      setPendingData(data.orders);
     })
     .catch((error) => {
       // Handle errors

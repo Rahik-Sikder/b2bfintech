@@ -24,14 +24,15 @@ const Pending = () => {
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [popupInfo, setPopupInfo] = useState(null);
+  const [pendingData, setPendingData] = useState([]);
 
   useEffect( () => {
 
     async function fetchData() {
-      const data = await getPendingData();
-      console.log(data);
+      getPendingData(setPendingData);
     }
     fetchData();
+    
 
     return () => {
       // Perform any clean-up here if necessary
@@ -46,7 +47,7 @@ const Pending = () => {
     setSelectAll(event.target.checked);
     if (event.target.checked) {
       const allRows = [];
-      for (let i = 1; i <= numRows; i++) {
+      for (let i = 0; i <= numRows; i++) {
         allRows.push(i);
       }
       setSelectedRows(allRows);
@@ -86,7 +87,8 @@ const Pending = () => {
   const generateRows = () => {
     // Generate rows based on the number of rows selected
     const rows = [];
-    for (let i = numRows; i >= 1; i--) {
+
+    pendingData.slice(0,numRows).map((order, i) => {
       rows.push(
         <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
           <TableCell padding="checkbox">
@@ -95,13 +97,13 @@ const Pending = () => {
               onChange={(event) => handleSelectRow(event, i)}
             />
           </TableCell>
-          <TableCell>Order {i}</TableCell>
-          <TableCell>Item {i}</TableCell>
-          <TableCell>Date {i}</TableCell>
-          <TableCell>Amount {i}</TableCell>
+          <TableCell>Order #{order.id}</TableCell>
+          <TableCell>{order.item_name}</TableCell>
+          <TableCell>Date {order.return_req_date}</TableCell>
+          <TableCell>{order.refund_amount}</TableCell>
         </TableRow>
       );
-    }
+    })
     return rows;
   };
 
@@ -219,11 +221,11 @@ const Pending = () => {
           </Table>
         </Box>
         {/* Pop-up with order information */}
-        {popupInfo && (
+        {/* {popupInfo && (
           <Popup width={1045} height={753} orderNumber={popupInfo} onClose={handleClosePopup} />
-        )}
+        )} */}
         {/* Other components */}
-        <SimplePaper height={200} />
+        {/* <SimplePaper height={200} /> */}
       </Stack>
     </PageContainer>
   );

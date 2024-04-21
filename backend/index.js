@@ -12,20 +12,10 @@ app.get("/helloWorld", (request, response) => {
   return response.send("Hello World");
 });
 
-const pendingData = {
-  pendingOrders: [
-    {
-      id: 10,
-      name: "hello",
-      dateOfReturn: "20303020",
-      refundAmount: 200,
-    },
-
-  ]
-}
+const pendingData = require("./pendingData.json")
 
 app.get("/pendingData", (request, response) => {
-  return response.send(pendingData);
+  return response.send(JSON.stringify(pendingData));
 });
 
 app.listen(4000, () => console.log("The server is running at PORT 4000"));
