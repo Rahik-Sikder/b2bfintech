@@ -1,0 +1,404 @@
+{
+  "orders": [
+    {
+      "id": "43898",
+      "item_name": "Smart LED Light Bulb (Pack of 4)",
+      "status": "pending",
+      "date_ordered": "04/03/2024",
+      "return_req_date": "04/25/2024",
+      "refund_amount": "$27.99",
+      "item_description": "Works with Alexa and Google Assistant; dimmable",
+      "return_reasoning": "Received the wrong bulb type; ordered E26, received E27."
+    },
+    {
+      "id": "43897",
+      "item_name": "Portable Blender",
+      "status": "pending",
+      "date_ordered": "04/02/2024",
+      "return_req_date": "04/24/2024",
+      "refund_amount": "$39.99",
+      "item_description": "USB rechargeable; BPA-free; 16 oz capacity",
+      "return_reasoning": "Blender not working; unable to blend."
+    },
+    {
+      "id": "43896",
+      "item_name": "Adjustable Laptop Stand",
+      "status": "pending",
+      "date_ordered": "04/02/2024",
+      "return_req_date": "04/23/2024",
+      "refund_amount": "$34.99",
+      "item_description": "Foldable and portable; ergonomic design",
+      "return_reasoning": "Stand arrived with missing parts; unable to assemble."
+    },
+    {
+      "id": "43895",
+      "item_name": "Bluetooth Earbuds",
+      "status": "pending",
+      "date_ordered": "04/02/2024",
+      "return_req_date": "04/22/2024",
+      "refund_amount": "$29.99",
+      "item_description": "Wireless; noise-canceling; up to 20 hours of playtime",
+      "return_reasoning": "Left earbud not working; audio quality poor."
+    },
+    {
+      "id": "43894",
+      "item_name": "Reusable Silicone Food Bags (Set of 6)",
+      "status": "pending",
+      "date_ordered": "04/01/2024",
+      "return_req_date": "04/21/2024",
+      "refund_amount": "$21.99",
+      "item_description": "Eco-friendly; leak-proof; microwave and dishwasher safe",
+      "return_reasoning": "Received fewer bags than ordered; only 5 bags in the package."
+    },
+    {
+      "id": "43893",
+      "item_name": "Digital Alarm Clock",
+      "status": "pending",
+      "date_ordered": "04/01/2024",
+      "return_req_date": "04/20/2024",
+      "refund_amount": "$9.99",
+      "item_description": "Large LED display; snooze function; battery backup",
+      "return_reasoning": "Alarm clock not working; unable to set alarm."
+    },
+    {
+      "id": "43892",
+      "item_name": "Resistance Bands Set",
+      "status": "pending",
+      "date_ordered": "04/01/2024",
+      "return_req_date": "04/19/2024",
+      "refund_amount": "$16.99",
+      "item_description": "Includes 5 bands with varying resistance levels; carry bag included",
+      "return_reasoning": "Received the wrong set; ordered with a higher resistance level."
+    },
+    {
+      "id": "43891",
+      "item_name": "Insulated Lunch Box",
+      "status": "pending",
+      "date_ordered": "03/31/2024",
+      "return_req_date": "04/18/2024",
+      "refund_amount": "$22.99",
+      "item_description": "Keeps food hot or cold for hours; BPA-free; 16 oz capacity",
+      "return_reasoning": "Lunch box arrived with a broken latch; unable to close properly."
+    },
+    {
+      "id": "43890",
+      "item_name": "Digital Kitchen Scale",
+      "status": "pending",
+      "date_ordered": "03/31/2024",
+      "return_req_date": "04/17/2024",
+      "refund_amount": "$17.99",
+      "item_description": "LCD display; stainless steel surface; up to 11lb capacity",
+      "return_reasoning": "Scale not working; unable to measure accurately."
+    },
+    {
+      "id": "43889",
+      "item_name": "Smartphone Tripod Stand",
+      "status": "pending",
+      "date_ordered": "03/31/2024",
+      "return_req_date": "04/16/2024",
+      "refund_amount": "$24.99",
+      "item_description": "Adjustable height; compatible with most smartphones",
+      "return_reasoning": "Tripod stand arrived with a missing screw; unable to assemble."
+    },
+    {
+      "id": "43888",
+      "item_name": "Stainless Steel Travel Mug",
+      "status": "pending",
+      "date_ordered": "03/30/2024",
+      "return_req_date": "04/15/2024",
+      "refund_amount": "$12.99",
+      "item_description": "Double-wall insulation; leak-proof lid; 16 oz capacity",
+      "return_reasoning": "Mug arrived with a dent; unable to seal properly."
+    },
+    {
+      "id": "43887",
+      "item_name": "Portable Bluetooth Speaker",
+      "status": "pending",
+      "date_ordered": "03/30/2024",
+      "return_req_date": "04/14/2024",
+      "refund_amount": "$39.99",
+      "item_description": "Wireless; waterproof; 20W output power",
+      "return_reasoning": "Speaker arrived with a broken power button; unable to turn on."
+    },
+    {
+      "id": "43886",
+      "item_name": "Reusable Grocery Bags (Set of 3)",
+      "status": "pending",
+      "date_ordered": "03/30/2024",
+      "return_req_date": "04/13/2024",
+      "refund_amount": "$14.99",
+      "item_description": "Durable and eco-friendly; foldable; large capacity",
+      "return_reasoning": "Received the wrong color; ordered blue, received green."
+    },
+    {
+      "id": "43885",
+      "item_name": "Wireless Charging Pad",
+      "status": "pending",
+      "date_ordered": "03/29/2024",
+      "return_req_date": "04/12/2024",
+      "refund_amount": "$29.99",
+      "item_description": "Compatible with Qi-enabled devices; LED charging indicator",
+      "return_reasoning": "Charging pad not working; unable to charge devices."
+    },
+    {
+      "id": "43884",
+      "item_name": "Stainless Steel Water Bottle",
+      "status": "pending",
+      "date_ordered": "03/29/2024",
+      "return_req_date": "04/11/2024",
+      "refund_amount": "$19.99",
+      "item_description": "Double-wall insulation; BPA-free; 20 oz capacity",
+      "return_reasoning": "Bottle arrived dented; unable to use."
+    },
+    {
+      "id": "43883",
+      "item_name": "silver wristwatch",
+      "status": "pending",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/10/2024",
+      "refund_amount": "$29.99",
+      "item_description": "Stainless steel; analog dial; water-resistant up to 30 meters",
+      "return_reasoning": "Watch strap broken; time incorrect by 20 minutes."
+    },
+    {
+      "id": "43882",
+      "item_name": "blue yoga mat",
+      "status": "pending",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/09/2024",
+      "refund_amount": "$24.99",
+      "item_description": "Non-slip surface; 6mm thick; includes carry strap",
+      "return_reasoning": "Mat arrived with a tear in the corner."
+    },
+    {
+      "id": "43881",
+      "item_name": "wireless earbuds",
+      "status": "pending",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/08/2024",
+      "refund_amount": "$39.95",
+      "item_description": "Bluetooth 5.0; up to 25 hours of battery life; touch control",
+      "return_reasoning": "Left earbud not working; charging case broken."
+    },
+    {
+      "id": "43880",
+      "item_name": "leather wallet",
+      "status": "pending",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/07/2024",
+      "refund_amount": "$19.99",
+      "item_description": "Genuine leather; RFID blocking; 6 card slots",
+      "return_reasoning": "Wallet arrived with a scratch on the leather."
+    },
+    {
+      "id": "43879",
+      "item_name": "white coffee mug",
+      "status": "pending",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/06/2024",
+      "refund_amount": "$9.99",
+      "item_description": "Ceramic; 12 oz capacity; dishwasher safe",
+      "return_reasoning": "Mug arrived cracked; pieces scattered throughout box."
+    },
+    {
+      "id": "43878",
+      "item_name": "green hoodie",
+      "status": "recieved",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/05/2024",
+      "refund_amount": "$34.99",
+      "item_description": "Cotton blend; kangaroo pocket; drawstring hood",
+      "return_reasoning": "Hoodie arrived with a stain on the sleeve."
+    },
+    {
+      "id": "43877",
+      "item_name": "black sunglasses",
+      "status": "delivery",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/04/2024",
+      "refund_amount": "$14.99",
+      "item_description": "Polarized lenses; UV protection; plastic frame",
+      "return_reasoning": "Scratch on the lens; unable to see clearly."
+    },
+    {
+      "id": "43876",
+      "item_name": "purple notebook",
+      "status": "pending",
+      "date_ordered": "03/28/2024",
+      "return_req_date": "04/03/2024",
+      "refund_amount": "$6.99",
+      "item_description": "Spiral-bound; college-ruled; 100 sheets",
+      "return_reasoning": "Pages stuck together; unable to write on some."
+    },
+    {
+      "id": "43875",
+      "item_name": "black heart jewelry",
+      "status": "delivery",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "04/03/2024",
+      "refund_amount": "$16.47",
+      "item_description": "Rose-gold chain necklace 2mm thick; 10mm black onyx heart charm accent",
+      "return_reasoning": "Jewel arrived cracked; black pieces scattered throughout box."
+    },
+    {
+      "id": "43874",
+      "item_name": "silver wristwatch",
+      "status": "recieved",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "04/02/2024",
+      "refund_amount": "$29.99",
+      "item_description": "Stainless steel; analog dial; water-resistant up to 30 meters",
+      "return_reasoning": "Watch stopped working after 2 days."
+    },
+    {
+      "id": "43873",
+      "item_name": "blue yoga mat",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "04/01/2024",
+      "refund_amount": "$24.99",
+      "item_description": "Non-slip surface; 6mm thick; includes carry strap",
+      "return_reasoning": "Wrong color; ordered green, received blue."
+    },
+    {
+      "id": "43872",
+      "item_name": "wireless earbuds",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "03/31/2024",
+      "refund_amount": "$39.95",
+      "item_description": "Bluetooth 5.0; up to 25 hours of battery life; touch control",
+      "return_reasoning": "Right earbud not working; audio quality poor."
+    },
+    {
+      "id": "43871",
+      "item_name": "leather wallet",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "03/30/2024",
+      "refund_amount": "$19.99",
+      "item_description": "Genuine leather; RFID blocking; 6 card slots",
+      "return_reasoning": "Wallet arrived with a loose stitching."
+    },
+    {
+      "id": "43870",
+      "item_name": "white coffee mug",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "03/29/2024",
+      "refund_amount": "$9.99",
+      "item_description": "Ceramic; 12 oz capacity; dishwasher safe",
+      "return_reasoning": "Mug arrived chipped; unable to use."
+    },
+    {
+      "id": "43869",
+      "item_name": "green hoodie",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "03/28/2024",
+      "refund_amount": "$34.99",
+      "item_description": "Cotton blend; kangaroo pocket; drawstring hood",
+      "return_reasoning": "Hoodie too small; need a larger size."
+    },
+    {
+      "id": "43868",
+      "item_name": "black sunglasses",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "03/27/2024",
+      "refund_amount": "$14.99",
+      "item_description": "Polarized lenses; UV protection; plastic frame",
+      "return_reasoning": "Received the wrong item; ordered aviators."
+    },
+    {
+      "id": "43867",
+      "item_name": "purple notebook",
+      "status": "completed",
+      "date_ordered": "03/27/2024",
+      "return_req_date": "03/26/2024",
+      "refund_amount": "$6.99",
+      "item_description": "Spiral-bound; college-ruled; 100 sheets",
+      "return_reasoning": "Pages missing from the notebook."
+    },
+    {
+      "id": "43866",
+      "item_name": "black heart jewelry",
+      "status": "delivery",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/25/2024",
+      "refund_amount": "$16.47",
+      "item_description": "Rose-gold chain necklace 2mm thick; 10mm black onyx heart charm accent",
+      "return_reasoning": "Jewel arrived cracked; black pieces scattered throughout box."
+    },
+    {
+      "id": "43865",
+      "item_name": "silver wristwatch",
+      "status": "delivery",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/24/2024",
+      "refund_amount": "$29.99",
+      "item_description": "Stainless steel; analog dial; water-resistant up to 30 meters",
+      "return_reasoning": "Watch strap broken; time incorrect by 20 minutes."
+    },
+    {
+      "id": "43864",
+      "item_name": "blue yoga mat",
+      "status": "recieved",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/23/2024",
+      "refund_amount": "$24.99",
+      "item_description": "Non-slip surface; 6mm thick; includes carry strap",
+      "return_reasoning": "Mat arrived with a tear in the corner."
+    },
+    {
+      "id": "43863",
+      "item_name": "wireless earbuds",
+      "status": "recieved",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/22/2024",
+      "refund_amount": "$39.95",
+      "item_description": "Bluetooth 5.0; up to 25 hours of battery life; touch control",
+      "return_reasoning": "Left earbud not working; charging case broken."
+    },
+    {
+      "id": "43862",
+      "item_name": "leather wallet",
+      "status": "completed",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/21/2024",
+      "refund_amount": "$19.99",
+      "item_description": "Genuine leather; RFID blocking; 6 card slots",
+      "return_reasoning": "Wallet arrived with a scratch on the leather."
+    },
+    {
+      "id": "43861",
+      "item_name": "white coffee mug",
+      "status": "completed",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/20/2024",
+      "refund_amount": "$9.99",
+      "item_description": "Ceramic; 12 oz capacity; dishwasher safe",
+      "return_reasoning": "Mug arrived cracked; pieces scattered throughout box."
+    },
+    {
+      "id": "43860",
+      "item_name": "green hoodie",
+      "status": "completed",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/19/2024",
+      "refund_amount": "$34.99",
+      "item_description": "Cotton blend; kangaroo pocket; drawstring hood",
+      "return_reasoning": "Hoodie arrived with a stain on the sleeve."
+    },
+    {
+      "id": "43859",
+      "item_name": "black sunglasses",
+      "status": "completed",
+      "date_ordered": "03/26/2024",
+      "return_req_date": "03/18/2024",
+      "refund_amount": "$14.99",
+      "item_description": "Polarized lenses; UV protection; plastic frame",
+      "return_reasoning": "Scratch on the lens; unable to see clearly."
+    }
+  ]
+}
