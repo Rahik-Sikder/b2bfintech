@@ -12,10 +12,13 @@ import {
   Select,
   MenuItem,
   Checkbox,
+  IconButton,
 } from "@mui/material";
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 import Popup from "../components/Popup";
+
+import InfoIcon from "@mui/icons-material/Info";
 
 import { getPendingData } from "../api/get-data";
 
@@ -23,21 +26,21 @@ const Pending = () => {
   const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [popupInfo, setPopupInfo] = useState(null);
   const [pendingData, setPendingData] = useState([]);
 
-  useEffect( () => {
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popupInfo, setPopupInfo] = useState({});
 
+  useEffect(() => {
     async function fetchData() {
       getPendingData(setPendingData);
     }
     fetchData();
-    
 
     return () => {
       // Perform any clean-up here if necessary
     };
-  }, []); 
+  }, []);
 
   const handleChangeRows = (event) => {
     setNumRows(event.target.value);
@@ -72,14 +75,11 @@ const Pending = () => {
         selectedRows.slice(selectedIndex + 1)
       );
     }
-
     setSelectedRows(newSelected);
-    // Show popup with order number
-    setPopupInfo(rowNumber);
   };
 
   const handleClosePopup = () => {
-    setPopupInfo(null);
+    setShowPopUp(false);
   };
 
   const isSelected = (rowNumber) => selectedRows.indexOf(rowNumber) !== -1;
@@ -88,9 +88,14 @@ const Pending = () => {
     // Generate rows based on the number of rows selected
     const rows = [];
 
-    pendingData.slice(0,numRows).map((order, i) => {
+    pendingData.slice(0, numRows).map((order, i) => {
+      console.log("Order is ", order);
       rows.push(
-        <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
+        <TableRow
+          key={i}
+          selected={isSelected(i)}
+          onClick={(event) => handleSelectRow(event, i)}
+        >
           <TableCell padding="checkbox">
             <Checkbox
               checked={isSelected(i)}
@@ -99,11 +104,23 @@ const Pending = () => {
           </TableCell>
           <TableCell>Order #{order.id}</TableCell>
           <TableCell>{order.item_name}</TableCell>
-          <TableCell>Date {order.return_req_date}</TableCell>
-          <TableCell>{order.refund_amount}</TableCell>
+
+          <TableCell align="right"> {order.return_req_date}</TableCell>
+          <TableCell align="right">{order.refund_amount}</TableCell>
+          <TableCell align="right">
+            {/* Gives a warning that I'm passing an object instead of a function. Not sure why. */}
+            <IconButton
+              onClick={() => {
+                setPopupInfo(order);
+                setShowPopUp(true);
+              }}
+            >
+              <InfoIcon color="primary" />
+            </IconButton>
+          </TableCell>
         </TableRow>
       );
-    })
+    });
     return rows;
   };
 
@@ -144,12 +161,15 @@ const Pending = () => {
         ></Box>
 
         {/* Row Selector */}
-        <Stack spacing={2} direction="row" sx={{ display: "flex", alignItems: "center" }}>
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
           <Box
             sx={{
               display: "flex",
               alignItems: "center",
-
             }}
           >
             <Typography
@@ -172,10 +192,7 @@ const Pending = () => {
               paddingRight: 2,
             }}
           >
-            <Checkbox
-              checked={selectAll}
-              onChange={handleSelectAll}
-            />
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
             <Typography
               variant="body1"
               color="text.primary"
@@ -205,15 +222,18 @@ const Pending = () => {
                     Item Name
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   <Typography variant="body1" color="text.primary">
                     Date of Return
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   <Typography variant="body1" color="text.primary">
                     Refund Amount
                   </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary"></Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -221,13 +241,23 @@ const Pending = () => {
           </Table>
         </Box>
         {/* Pop-up with order information */}
-        {/* {popupInfo && (
-          <Popup width={1045} height={753} orderNumber={popupInfo} onClose={handleClosePopup} />
-        )} */}
+        {showPopUp && (
+          <OrderInfoPopup
+            order={popupInfo}
+            handleClosePopup={handleClosePopup}
+          />
+        )}
         {/* Other components */}
         {/* <SimplePaper height={200} /> */}
       </Stack>
     </PageContainer>
+  );
+};
+
+const OrderInfoPopup = ({ order, handleClosePopup }) => {
+  console.log(order);
+  return (
+    <Popup width={1045} height={753} order={order} onClose={handleClosePopup} />
   );
 };
 

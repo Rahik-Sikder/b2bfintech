@@ -87,7 +87,7 @@ const Delivery = () => {
     <PageContainer>
       <Box sx={{ marginTop: 5, paddingX: 4 }}>
         <Typography variant="h1" color="primary.dark">
-          Visualization and Trends
+          Out for Delivery
         </Typography>
       </Box>
       <Stack spacing={4} marginTop={5} position="relative">
