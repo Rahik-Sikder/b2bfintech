@@ -24,7 +24,6 @@ const SearchForm = ({ navigation }) => {
 
   const handleNavigation = () => {
     // Implement navigation to the scan page here
-    console.log("Navigating to scan page...");
   };
 
   return (
