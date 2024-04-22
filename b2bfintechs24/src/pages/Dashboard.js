@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Box, Grid, Typography, Stack } from "@mui/material";
 
 import PageContainer from "../components/PageContainer";
 import SimplePaper from "../components/SimplePaper";
 import OrderItem from "../components/OrderItem";
+import {
+  getDeliveryData,
+  getPendingData,
+  getRecievedData,
+} from "../api/get-data";
+import { BarChart, Bar } from "recharts";
 
 const Dashboard = ({ setLoggedIn }) => {
   return (
     <PageContainer>
       <Box sx={{ marginTop: 5, paddingX: 4 }}>
         <Typography variant="h1" color="primary.dark">
-          Dashboards
+          Visualization and Trends
         </Typography>
       </Box>
       <MainContent />
@@ -20,28 +26,41 @@ const Dashboard = ({ setLoggedIn }) => {
 };
 
 const MainContent = () => {
+  const [pending, setPending] = useState([]);
+  const [deliveries, setDeliveries] = useState([]);
+  const [received, setReceived] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      getDeliveryData(setDeliveries);
+      getRecievedData(setReceived);
+      getPendingData(setPending);
+    };
+    getData();
+  });
+
   return (
     <Grid container sx={{ marginTop: 2 }} spacing={4}>
-      <Grid item xs={12} md={12} lg={5}>
+      <Grid item xs={12} md={12} lg={4}>
         <Stack spacing={4}>
-          <SimplePaper height={300} />
-          <ReturnsAwaiting />
+          <PendingRequests pending={pending} />
+          <ReturnsAwaiting received={received} />
         </Stack>
       </Grid>
-      <Grid item xs={12} md={12} lg={7}>
+      <Grid item xs={12} md={12} lg={8}>
         <Stack spacing={4}>
-          <SimplePaper marginTop={5}>
+          <SimplePaper marginTop={5} padding={2}>
             <SimplePaper height={250} padding={3} color="primary.light">
               <Box textAlign="center">
                 <Typography gutterBottom variant="h4" color="primary.dark">
                   Deliviers En Route
                 </Typography>
                 <Typography variant="h2" color="primary.dark">
-                  15
+                  {deliveries.length}
                 </Typography>
               </Box>
             </SimplePaper>
-            <DeliversEnroute />
+            <DeliversEnroute deliveries={deliveries} />
           </SimplePaper>
           <SimplePaper height={450} />
         </Stack>
@@ -50,28 +69,78 @@ const MainContent = () => {
   );
 };
 
-const ReturnsAwaiting = () => {
+const PendingRequests = ({ pending }) => {
+  return (
+    <SimplePaper height={300}>
+      <Stack spacing={2} width={500}>
+        <Box textAlign="center">
+          <Typography gutterBottom variant="h4" color="primary.dark">
+            Pending Requests
+          </Typography>
+          <Typography variant="h2" color="primary.dark">
+            {pending.length}
+          </Typography>
+
+          <Typography variant="h5" color="primary.dark" marginY={2}>
+            Frequent reasons for return:
+          </Typography>
+
+          <Box
+            sx={{
+              marginLeft: 2,
+              borderLeft: 2,
+              paddingLeft: 2,
+              textAlign: "start",
+            }}
+          >
+            <Stack spacing={1}>
+              <Box paddingRight={20}>
+                <SimplePaper color="#00B981" textColor="white" padding={1}>
+                  "Damaged on arrival"
+                </SimplePaper>
+              </Box>
+              <Box paddingRight={5}>
+                <SimplePaper color="#00B981" textColor="white" padding={1}>
+                  "Color mismatch"
+                </SimplePaper>
+              </Box>
+              <Box paddingRight={30}>
+                <SimplePaper color="#00B981" textColor="white" padding={1}>
+                  "Missing Part"
+                </SimplePaper>
+              </Box>
+            </Stack>
+          </Box>
+        </Box>
+      </Stack>
+    </SimplePaper>
+  );
+};
+
+const ReturnsAwaiting = ({ received }) => {
   return (
     <SimplePaper height={400} color="#B9B9B9">
       <Stack spacing={2} width={500}>
-        <Box sx={{ justifyItems: "center" }}>
+        <Box sx={{ justifyItems: "center", textAlign: "center" }}>
           <Typography variant="h3">Returns Awaiting Review</Typography>
         </Box>
-        {[236, 311, 298, 309, 312, 500, 412, 770].map((item) => {
-          return <OrderItem orderNumber={item} />;
+        {received.slice(0, 6).map((item) => {
+          return <OrderItem orderNumber={item.id} />;
         })}
       </Stack>
     </SimplePaper>
   );
 };
 
-const DeliversEnroute = () => {
+const DeliversEnroute = ({ deliveries }) => {
   return (
     <Box marginLeft={3}>
-      <SimplePaper color="#B9B9B9">
+      <SimplePaper color="#B9B9B9" height={250} width={150}>
         <Stack spacing={2}>
-          {[236, 311, 298].map((item) => {
-            return <OrderItem orderNumber={item} backgroundColor="#DEFFF5"/>;
+          {deliveries.slice(0, 3).map((item) => {
+            return (
+              <OrderItem orderNumber={item.id} backgroundColor="#DEFFF5" />
+            );
           })}
         </Stack>
       </SimplePaper>

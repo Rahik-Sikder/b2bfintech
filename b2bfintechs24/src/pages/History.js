@@ -10,7 +10,7 @@ const History = () => {
     <PageContainer>
       <Box sx={{ marginTop: 5, paddingX: 4 }}>
         <Typography variant="h1" color="primary.dark">
-          Completed
+          Completed Returns
         </Typography>
       </Box>
       <Stack spacing={4} marginY={5}>

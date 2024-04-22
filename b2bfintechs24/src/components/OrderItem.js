@@ -16,7 +16,6 @@ const SimplePaper = ({ orderNumber, onConfirm, onReject, backgroundColor="white"
         alignItems: "center",
         paddingY: 1,
         paddingRight: 5,
-
       }}
     >
       <Grid container>

@@ -2,6 +2,13 @@ import { Text, View, Pressable, SafeAreaView, StatusBar } from "react-native";
 
 import { styles } from "../styles/styles";
 
+import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
+import icoMoonConfig from './selection.json';
+const Icon = createIconSetFromIcoMoon(icoMoonConfig);
+//a constant with your icon with with and color
+const home = (<Icon name="page_bottom_dark" size={30} color="#f7a805" />);
+
+
 const PageContainer = ({ children }) => {
   return (
     <SafeAreaView style={styles.page_container_dark}>
@@ -10,6 +17,7 @@ const PageContainer = ({ children }) => {
         {/* <TopSvg /> */}
         <View style={{position: "absolute", marginTop: 200}}>{children}</View>
         {/* <BottomSvg /> */}
+        <Icon name="page_bottom_dark" size={30} color="#f7a805" />
       </SafeAreaView>
     </SafeAreaView>
   );
