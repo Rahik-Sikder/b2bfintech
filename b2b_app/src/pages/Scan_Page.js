@@ -1,11 +1,8 @@
 import {
   Text,
   View,
-  Box,
-  Pressable,
-  SafeAreaView,
   TouchableOpacity,
-  StyleSheet,
+  Image,
 } from "react-native";
 import {
   useCameraPermission,
@@ -19,7 +16,7 @@ import { styles } from "../styles/styles";
 
 import PageContainer from "../components/PageContainer";
 
-const Scan_Page = () => {
+const Scan_Page = ({ navigation }) => {
   const { hasPermission, requestPermission } = useCameraPermission();
 
   if (!hasPermission) {
@@ -37,6 +34,7 @@ const Scan_Page = () => {
   const handleNavigation = () => {
     // Implement navigation to the scan page here
     console.log("Navigating to input page...");
+    navigation.navigate("Input_Page");
   };
 
   const onCodeScanned = (code) => {
@@ -51,32 +49,49 @@ const Scan_Page = () => {
 
   return (
     <PageContainer>
-      <View  style={{ marginTop: 80 }}>
-        <Text style={{ fontSize: 30, padding: 20 }}>
-          Scan your item label
-        </Text>
+      <View style={{}}>
+        <Text style={{ fontSize: 30, padding: 20 }}>Scan your item label</Text>
       </View>
-      <View flex={2} style={{margin: 10,borderRadius: 20}} position="relative">
+      <View
+        flex={2}
+        style={{
+          borderRadius: 20,
+          backgroundColor: "#260064",
+          padding: 5,
+          borderRadius: 20,
+        }}
+        position="relative"
+      >
         <Camera
-          style={{flex: 1,padding: 2, borderColor: "#260064", border: 4, borderRadius: 20}}
+          style={{
+            flex: 1,
+            margin: 10,
+          }}
           device={device}
           isActive={true}
           codeScanner={codeScanner}
+
         />
       </View>
-      
-      <View flex={1} style={{padding: 10}}>
-      <TouchableOpacity
-        onPress={handleScan}
-        style={styles.search_button_container}
-      >
-        <Text style={styles.search_button_text}>Scan</Text>
-      </TouchableOpacity>
+
+      <View flex={1} style={{ padding: 10 }}>
+        <TouchableOpacity
+          onPress={handleScan}
+          style={styles.search_button_container}
+        >
+          <Text style={styles.search_button_text}>Scan</Text>
+        </TouchableOpacity>
         <Text style={{ marginTop: 10, textAlign: "center", fontSize: 20 }}>
           No label?
         </Text>
         <TouchableOpacity onPress={handleNavigation}>
-          <Text style={{ color: "#4E00CE", textAlign: "center",textDecorationLine: "underline" }}>
+          <Text
+            style={{
+              color: "#4E00CE",
+              textAlign: "center",
+              textDecorationLine: "underline",
+            }}
+          >
             Input your order number
           </Text>
         </TouchableOpacity>

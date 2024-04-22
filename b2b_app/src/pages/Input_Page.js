@@ -6,14 +6,6 @@ import { styles } from "../styles/styles";
 import PageContainer from "../components/PageContainer";
 
 const Input_Page = ({ navigation }) => {
-  return (
-    <PageContainer>
-      <SearchForm navigation={navigation} />
-    </PageContainer>
-  );
-};
-
-const SearchForm = ({ navigation }) => {
   const [orderNumber, setOrderNumber] = useState("");
   const [confirmationPin, setConfirmationPin] = useState("");
 
@@ -24,13 +16,13 @@ const SearchForm = ({ navigation }) => {
 
   const handleNavigation = () => {
     // Implement navigation to the scan page here
+    navigation.navigate("Scan_Page");
   };
-
   return (
-    <View style={{ flex: 1 }}>
-      <Text style={{ fontSize: 30, marginBottom: 25, padding: 20 }}>
-        Input Order Information
-      </Text>
+    <PageContainer>
+      <View style={{}}>
+        <Text style={{ fontSize: 28, marginBottom: 20  }}>Input Order Information</Text>
+      </View>
       <Text style={{ fontSize: 20, marginBottom: 10 }}>Order Number:</Text>
       <TextInput
         style={styles.input_field}
@@ -61,7 +53,7 @@ const SearchForm = ({ navigation }) => {
           </Text>
         </Text>
       </TouchableOpacity>
-    </View>
+    </PageContainer>
   );
 };
 

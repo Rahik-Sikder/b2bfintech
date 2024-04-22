@@ -16,7 +16,7 @@ const PageContainer = ({ children }) => {
       <StatusBar barStyle="dark-content" />
       <ImageBackground
         source={mainBackground}
-        style={{ flex: 1, resizeMode: "cover" }}
+        style={{ flex: 1, resizeMode: "cover", paddingHorizontal: 50, paddingVertical: 150, justifyContent: "center" }}
       >
         {children}
       </ImageBackground>
