@@ -1,43 +1,49 @@
-import { React, useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import {
   Typography,
   Box,
   Stack,
-  Button,
   Table,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
-  Select,
-  MenuItem,
   Checkbox,
+  IconButton
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 
 import PageContainer from "../components/PageContainer";
-import SimplePaper from "../components/SimplePaper";
-import StyledTable from "../components/StyledTable";
+import Popup from "../components/Popup"; 
 import { getDeliveryData } from "../api/get-data";
 
 const Delivery = () => {
-  const [numRows, setNumRows] = useState(20);
-  const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
   const [deliveryData, setDeliveryData] = useState([]);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popupInfo, setPopupInfo] = useState({});
 
   useEffect(() => {
     async function fetchData() {
       getDeliveryData(setDeliveryData);
     }
     fetchData();
-
-    return () => {
-      // Perform any clean-up here if necessary
-    };
   }, []);
 
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      const newSelecteds = deliveryData.map((n, i) => i);
+      setSelectedRows(newSelecteds);
+      setSelectAll(true);
+    } else {
+      setSelectedRows([]);
+      setSelectAll(false);
+    }
+  };
+
   const handleSelectRow = (event, rowNumber) => {
+    event.stopPropagation(); 
     const selectedIndex = selectedRows.indexOf(rowNumber);
     let newSelected = [];
 
@@ -53,34 +59,42 @@ const Delivery = () => {
         selectedRows.slice(selectedIndex + 1)
       );
     }
-
     setSelectedRows(newSelected);
-    // Show popup with order number
   };
 
-  const isSelected = (rowNumber) => selectedRows.indexOf(rowNumber) !== -1;
+  const handleClosePopup = () => {
+    setShowPopUp(false);
+  };
+
+  const isSelected = (rowNumber) => selectedRows.includes(rowNumber);
 
   const generateRows = () => {
-    // Generate rows based on the number of rows selected
-    const rows = [];
-
-    deliveryData.map((order, i) => {
-      rows.push(
-        <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
-          <TableCell padding="checkbox">
-            <Checkbox
-              checked={isSelected(i)}
-              onChange={(event) => handleSelectRow(event, i)}
-            />
-          </TableCell>
-          <TableCell>Order #{order.id}</TableCell>
-          <TableCell>{order.item_name}</TableCell>
-          <TableCell>Date {order.return_req_date}</TableCell>
-          <TableCell>{order.refund_amount}</TableCell>
-        </TableRow>
-      );
-    })
-    return rows;
+    return deliveryData.map((order, i) => (
+      <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
+        <TableCell padding="checkbox">
+          <Checkbox
+            checked={isSelected(i)}
+            onClick={(event) => event.stopPropagation()}  // Stop propagation to avoid row selection
+            onChange={(event) => handleSelectRow(event, i)}
+          />
+        </TableCell>
+        <TableCell>Order #{order.id}</TableCell>
+        <TableCell>{order.item_name}</TableCell>
+        <TableCell>{order.return_req_date}</TableCell>
+        <TableCell>{order.refund_amount}</TableCell>
+        
+        <TableCell>
+            <IconButton
+              onClick={() => {
+                setPopupInfo(order);
+                setShowPopUp(true);
+              }}
+            >
+              <InfoIcon color="primary" />
+            </IconButton>
+        </TableCell>
+      </TableRow>
+    ));
   };
 
   return (
@@ -91,49 +105,42 @@ const Delivery = () => {
         </Typography>
       </Box>
       <Stack spacing={4} marginTop={5} position="relative">
-        {/* Spacer */}
-        <Box height="40px" /> {/* Adjust height as needed */}
-        {/* Table */}
-        <Box border="1px solid #00B981" borderRadius="4px" overflow="hidden">
-          {" "}
-          {/* Added overflow:hidden to prevent double border */}
-          <StyledTable numRows={7} numColumns={5} />
-        </Box>
-        {/* Other components */}
         <Box bgcolor="white" borderRadius="4px" overflow="hidden">
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell padding="checkbox">
-                  {/* Placeholder for checkbox */}
+                  <Checkbox
+                    indeterminate={selectedRows.length > 0 && selectedRows.length < deliveryData.length}
+                    checked={deliveryData.length > 0 && selectedRows.length === deliveryData.length}
+                    onChange={handleSelectAll}
+                  />
                 </TableCell>
-                <TableCell>
-                  <Typography variant="body1" color="text.primary">
-                    Order #
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body1" color="text.primary">
-                    Item Name
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body1" color="text.primary">
-                    Date of Return
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body1" color="text.primary">
-                    Refund Amount
-                  </Typography>
-                </TableCell>
+                <TableCell>Order #</TableCell>
+                <TableCell>Item Name</TableCell>
+                <TableCell>Date of Return</TableCell>
+                <TableCell>Refund Amount</TableCell>
+                <TableCell>Info</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>{generateRows()}</TableBody>
           </Table>
         </Box>
+        {showPopUp && (
+          <OrderInfoPopup
+            order={popupInfo}
+            handleClosePopup={handleClosePopup}
+          />
+        )}
       </Stack>
     </PageContainer>
+  );
+};
+
+const OrderInfoPopup = ({ order, handleClosePopup }) => {
+  console.log(order);
+  return (
+    <Popup width={1045} height={753} order={order} onClose={handleClosePopup} />
   );
 };
 
