@@ -13,25 +13,24 @@ import {
   Button,
   Select,
   MenuItem,
-  Container
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 
 import PageContainer from "../components/PageContainer";
 import Popup from "../components/Popup";
-import { getRecievedData } from "../api/get-data"; // Ensure correct function name (should be getReceivedData)
+import { getRecievedData } from "../api/get-data"; 
 
 const Received = () => {
   const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [receivedData, setReceivedData] = useState([]); // Adjusted for proper naming
+  const [receivedData, setReceivedData] = useState([]); 
   const [showPopUp, setShowPopUp] = useState(false);
   const [popupInfo, setPopupInfo] = useState({});
 
   useEffect(() => {
     async function fetchData() {
-      getRecievedData(setReceivedData); // Again, ensure correct spelling in production
+      getRecievedData(setReceivedData); 
     }
     fetchData();
   }, []);
