@@ -9,17 +9,21 @@ import {
   TableCell,
   TableBody,
   Checkbox,
-  IconButton
+  IconButton,
+  Button,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 
 import PageContainer from "../components/PageContainer";
-import Popup from "../components/Popup"; 
+import Popup from "../components/Popup";
 import { getDeliveryData } from "../api/get-data";
 
 const Delivery = () => {
-  const [selectedRows, setSelectedRows] = useState([]);
+  const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
   const [deliveryData, setDeliveryData] = useState([]);
   const [showPopUp, setShowPopUp] = useState(false);
   const [popupInfo, setPopupInfo] = useState({});
@@ -35,29 +39,19 @@ const Delivery = () => {
     if (event.target.checked) {
       const newSelecteds = deliveryData.map((n, i) => i);
       setSelectedRows(newSelecteds);
-      setSelectAll(true);
     } else {
       setSelectedRows([]);
-      setSelectAll(false);
     }
+    setSelectAll(event.target.checked);
   };
 
   const handleSelectRow = (event, rowNumber) => {
-    event.stopPropagation(); 
     const selectedIndex = selectedRows.indexOf(rowNumber);
-    let newSelected = [];
-
+    let newSelected = selectedRows.slice();
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selectedRows, rowNumber);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selectedRows.slice(1));
-    } else if (selectedIndex === selectedRows.length - 1) {
-      newSelected = newSelected.concat(selectedRows.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selectedRows.slice(0, selectedIndex),
-        selectedRows.slice(selectedIndex + 1)
-      );
+      newSelected.push(rowNumber);
+    } else {
+      newSelected.splice(selectedIndex, 1);
     }
     setSelectedRows(newSelected);
   };
@@ -74,24 +68,24 @@ const Delivery = () => {
         <TableCell padding="checkbox">
           <Checkbox
             checked={isSelected(i)}
-            onClick={(event) => event.stopPropagation()}  // Stop propagation to avoid row selection
+            onClick={(event) => event.stopPropagation()}
             onChange={(event) => handleSelectRow(event, i)}
           />
         </TableCell>
         <TableCell>Order #{order.id}</TableCell>
         <TableCell>{order.item_name}</TableCell>
-        <TableCell>{order.return_req_date}</TableCell>
-        <TableCell>{order.refund_amount}</TableCell>
-        
-        <TableCell>
-            <IconButton
-              onClick={() => {
-                setPopupInfo(order);
-                setShowPopUp(true);
-              }}
-            >
-              <InfoIcon color="primary" />
-            </IconButton>
+
+        <TableCell align="right"> {order.return_req_date}</TableCell>
+        <TableCell align="right">{order.refund_amount}</TableCell>
+        <TableCell align="right">
+          <IconButton
+            onClick={() => {
+              setPopupInfo(order);
+              setShowPopUp(true);
+            }}
+          >
+            <InfoIcon color="primary" />
+          </IconButton>
         </TableCell>
       </TableRow>
     ));
@@ -99,48 +93,124 @@ const Delivery = () => {
 
   return (
     <PageContainer>
-      <Box sx={{ marginTop: 5, paddingX: 4 }}>
-        <Typography variant="h1" color="primary.dark">
-          Out for Delivery
+      <Box
+        sx={{
+          marginTop: 5,
+          paddingX: 4,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h1"
+          color="primary.dark"
+          sx={{ marginRight: "auto" }}
+        >
+          Requested Returns
         </Typography>
+        {/* Approve Selected Button */}
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ backgroundColor: "#320083", marginLeft: "auto" }}
+        >
+          Approve Selected
+        </Button>
       </Box>
-      <Stack spacing={4} marginTop={5} position="relative">
+      <Stack spacing={2} marginTop={2} position="relative">
+        {/* Select All Checkbox */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            marginLeft: "24px",
+          }}
+        ></Box>
+
+        {/* Row Selector */}
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ marginRight: "10px" }}
+            >
+              Rows:{" "}
+            </Typography>
+            <Select value={numRows} onChange={(event) => setNumRows(event.target.value)}>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+              <MenuItem value={30}>30</MenuItem>
+            </Select>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              paddingRight: 2,
+            }}
+          >
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ fontSize: 20, fontFamily: "Rubik", marginLeft: 1 }}
+            >
+              Select All
+            </Typography>
+          </Box>
+        </Stack>
         <Box bgcolor="white" borderRadius="4px" overflow="hidden">
+          {" "}
+          {/* Set background color to white */}
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell padding="checkbox">
-                  <Checkbox
-                    indeterminate={selectedRows.length > 0 && selectedRows.length < deliveryData.length}
-                    checked={deliveryData.length > 0 && selectedRows.length === deliveryData.length}
-                    onChange={handleSelectAll}
-                  />
+                  {/* Placeholder for checkbox */}
                 </TableCell>
-                <TableCell>Order #</TableCell>
-                <TableCell>Item Name</TableCell>
-                <TableCell>Date of Return</TableCell>
-                <TableCell>Refund Amount</TableCell>
-                <TableCell>Info</TableCell>
+                <TableCell>
+                  <Typography variant="body1" color="text.primary">
+                    Order #
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="body1" color="text.primary">
+                    Item Name
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary">
+                    Date of Return
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary">
+                    Refund Amount
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary"></Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>{generateRows()}</TableBody>
           </Table>
         </Box>
         {showPopUp && (
-          <OrderInfoPopup
-            order={popupInfo}
-            handleClosePopup={handleClosePopup}
-          />
+          <Popup order={popupInfo} onClose={handleClosePopup} />
         )}
       </Stack>
     </PageContainer>
-  );
-};
-
-const OrderInfoPopup = ({ order, handleClosePopup }) => {
-  console.log(order);
-  return (
-    <Popup width={1045} height={753} order={order} onClose={handleClosePopup} />
   );
 };
 

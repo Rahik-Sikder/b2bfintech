@@ -1,57 +1,217 @@
-import React from "react";
-
-import { Typography, Box, Container, Stack } from "@mui/material";
+import { useState, useEffect } from "react";
+import {
+  Typography,
+  Box,
+  Stack,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Checkbox,
+  IconButton,
+  Button,
+  Select,
+  MenuItem,
+  Container
+} from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 
 import PageContainer from "../components/PageContainer";
-import SimplePaper from "../components/SimplePaper";
-import { PieChart, Pie, Cell, Tooltip } from "recharts";
+import Popup from "../components/Popup";
+import { getRecievedData } from "../api/get-data"; // Ensure correct function name (should be getReceivedData)
 
 const Received = () => {
-  // Filler data for the pie chart
-  const data = [
-    { name: "Category A", value: 400 },
-    { name: "Category B", value: 300 },
-    { name: "Category C", value: 300 },
-    { name: "Category D", value: 200 },
-  ];
+  const [numRows, setNumRows] = useState(20);
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectedRows, setSelectedRows] = useState([]);
+  const [receivedData, setReceivedData] = useState([]); // Adjusted for proper naming
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popupInfo, setPopupInfo] = useState({});
 
-  const COLORS = ["#67C587", "#A9DEBA", "#C9EAD4", "#EAF6ED"];
+  useEffect(() => {
+    async function fetchData() {
+      getRecievedData(setReceivedData); // Again, ensure correct spelling in production
+    }
+    fetchData();
+  }, []);
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      const newSelecteds = receivedData.map((n, i) => i);
+      setSelectedRows(newSelecteds);
+    } else {
+      setSelectedRows([]);
+    }
+    setSelectAll(event.target.checked);
+  };
+
+  const handleSelectRow = (event, rowNumber) => {
+    event.stopPropagation(); 
+    const selectedIndex = selectedRows.indexOf(rowNumber);
+    let newSelected = [];
+
+    if (selectedIndex === -1) {
+      newSelected.push(rowNumber);
+    } else {
+      newSelected.splice(selectedIndex, 1);
+    }
+    setSelectedRows(newSelected);
+  };
+
+  const handleClosePopup = () => {
+    setShowPopUp(false);
+  };
+
+  const isSelected = (rowNumber) => selectedRows.includes(rowNumber);
+
+  const generateRows = () => {
+    return receivedData.map((order, i) => (
+      <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
+        <TableCell padding="checkbox">
+          <Checkbox
+            checked={isSelected(i)}
+            onClick={(event) => event.stopPropagation()}
+            onChange={(event) => handleSelectRow(event, i)}
+          />
+        </TableCell>
+        <TableCell>Order #{order.id}</TableCell>
+        <TableCell>{order.item_name}</TableCell>
+        <TableCell align="right"> {order.return_req_date}</TableCell>
+        <TableCell align="right">{order.refund_amount}</TableCell>
+        <TableCell align="right">
+          <IconButton
+            onClick={() => {
+              setPopupInfo(order);
+              setShowPopUp(true);
+            }}
+          >
+            <InfoIcon color="primary" />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    ));
+  };
 
   return (
     <PageContainer>
-      <Box sx={{ marginTop: 5, paddingX: 4 }}>
-        <Typography variant="h1" color="primary.dark">
-          Received
+      <Box
+        sx={{
+          marginTop: 5,
+          paddingX: 4,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h1"
+          color="primary.dark"
+          sx={{ marginRight: "auto" }}
+        >
+          Requested Returns
         </Typography>
+        {/* Approve Selected Button */}
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ backgroundColor: "#320083", marginLeft: "auto" }}
+        >
+          Approve Selected
+        </Button>
       </Box>
-      <Container maxWidth="lg">
-        <Stack spacing={4} my={5}>
-          <SimplePaper height={400} justifyContent="flex-start" >
-            <PieChart width={400} height={400}>
-              <Pie
-                data={data}
-                cx={200}
-                cy={200}
-                labelLine={false}
-                outerRadius={150}
-                fill="#8884d8"
-                dataKey="value"
-                nameKey="name"
-                isAnimationActive={false} // Disable animation
-              >
-                {data.map((entry, index) => (
-                  <Cell
-                    key={`cell-${index}`}
-                    fill={COLORS[index % COLORS.length]}
-                  />
-                ))}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </SimplePaper>
-          <SimplePaper height={500}></SimplePaper>
+      <Stack spacing={2} marginTop={2} position="relative">
+        {/* Select All Checkbox */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            marginLeft: "24px",
+          }}
+        ></Box>
+
+        {/* Row Selector */}
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ marginRight: "10px" }}
+            >
+              Rows:{" "}
+            </Typography>
+            <Select value={numRows} onChange={(event) => setNumRows(event.target.value)}>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+              <MenuItem value={30}>30</MenuItem>
+            </Select>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              paddingRight: 2,
+            }}
+          >
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ fontSize: 20, fontFamily: "Rubik", marginLeft: 1 }}
+            >
+              Select All
+            </Typography>
+          </Box>
         </Stack>
-      </Container>
+        <Box bgcolor="white" borderRadius="4px" overflow="hidden">
+          {" "}
+          {/* Set background color to white */}
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell padding="checkbox">
+                  {/* Placeholder for checkbox */}
+                </TableCell>
+                <TableCell>
+                  <Typography variant="body1" color="text.primary">
+                    Order #
+                  </Typography>
+                </TableCell>
+                <TableCell>
+                  <Typography variant="body1" color="text.primary">
+                    Item Name
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary">
+                    Date of Return
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary">
+                    Refund Amount
+                  </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary"></Typography>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>{generateRows()}</TableBody>
+          </Table>
+        </Box>
+        {showPopUp && (
+          <Popup order={popupInfo} onClose={handleClosePopup} />
+        )}
+      </Stack>
     </PageContainer>
   );
 };
