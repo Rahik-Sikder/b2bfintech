@@ -1,23 +1,23 @@
-import { React, useState, useEffect } from "react";
-
+import { useState, useEffect } from "react";
 import {
   Typography,
   Box,
   Stack,
-  Button,
   Table,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
+  Checkbox,
+  IconButton,
+  Button,
   Select,
   MenuItem,
-  Checkbox,
 } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
 
 import PageContainer from "../components/PageContainer";
-import SimplePaper from "../components/SimplePaper";
-import StyledTable from "../components/StyledTable";
+import Popup from "../components/Popup";
 import { getDeliveryData } from "../api/get-data";
 
 const Delivery = () => {
@@ -25,82 +25,153 @@ const Delivery = () => {
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
   const [deliveryData, setDeliveryData] = useState([]);
+  const [showPopUp, setShowPopUp] = useState(false);
+  const [popupInfo, setPopupInfo] = useState({});
 
   useEffect(() => {
     async function fetchData() {
       getDeliveryData(setDeliveryData);
     }
     fetchData();
-
-    return () => {
-      // Perform any clean-up here if necessary
-    };
   }, []);
+
+  const handleSelectAll = (event) => {
+    if (event.target.checked) {
+      const newSelecteds = deliveryData.map((n, i) => i);
+      setSelectedRows(newSelecteds);
+    } else {
+      setSelectedRows([]);
+    }
+    setSelectAll(event.target.checked);
+  };
 
   const handleSelectRow = (event, rowNumber) => {
     const selectedIndex = selectedRows.indexOf(rowNumber);
-    let newSelected = [];
-
+    let newSelected = selectedRows.slice();
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selectedRows, rowNumber);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selectedRows.slice(1));
-    } else if (selectedIndex === selectedRows.length - 1) {
-      newSelected = newSelected.concat(selectedRows.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selectedRows.slice(0, selectedIndex),
-        selectedRows.slice(selectedIndex + 1)
-      );
+      newSelected.push(rowNumber);
+    } else {
+      newSelected.splice(selectedIndex, 1);
     }
-
     setSelectedRows(newSelected);
-    // Show popup with order number
   };
 
-  const isSelected = (rowNumber) => selectedRows.indexOf(rowNumber) !== -1;
+  const handleClosePopup = () => {
+    setShowPopUp(false);
+  };
+
+  const isSelected = (rowNumber) => selectedRows.includes(rowNumber);
 
   const generateRows = () => {
-    // Generate rows based on the number of rows selected
-    const rows = [];
+    return deliveryData.map((order, i) => (
+      <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
+        <TableCell padding="checkbox">
+          <Checkbox
+            checked={isSelected(i)}
+            onClick={(event) => event.stopPropagation()}
+            onChange={(event) => handleSelectRow(event, i)}
+          />
+        </TableCell>
+        <TableCell>Order #{order.id}</TableCell>
+        <TableCell>{order.item_name}</TableCell>
 
-    deliveryData.map((order, i) => {
-      rows.push(
-        <TableRow key={i} selected={isSelected(i)} onClick={(event) => handleSelectRow(event, i)}>
-          <TableCell padding="checkbox">
-            <Checkbox
-              checked={isSelected(i)}
-              onChange={(event) => handleSelectRow(event, i)}
-            />
-          </TableCell>
-          <TableCell>Order #{order.id}</TableCell>
-          <TableCell>{order.item_name}</TableCell>
-          <TableCell>Date {order.return_req_date}</TableCell>
-          <TableCell>{order.refund_amount}</TableCell>
-        </TableRow>
-      );
-    })
-    return rows;
+        <TableCell align="right"> {order.return_req_date}</TableCell>
+        <TableCell align="right">{order.refund_amount}</TableCell>
+        <TableCell align="right">
+          <IconButton
+            onClick={() => {
+              setPopupInfo(order);
+              setShowPopUp(true);
+            }}
+          >
+            <InfoIcon color="primary" />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    ));
   };
 
   return (
     <PageContainer>
-      <Box sx={{ marginTop: 5, paddingX: 4 }}>
-        <Typography variant="h1" color="primary.dark">
-          Out for Delivery
+      <Box
+        sx={{
+          marginTop: 5,
+          paddingX: 4,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h1"
+          color="primary.dark"
+          sx={{ marginRight: "auto" }}
+        >
+          Requested Returns
         </Typography>
+        {/* Approve Selected Button */}
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ backgroundColor: "#320083", marginLeft: "auto" }}
+        >
+          Approve Selected
+        </Button>
       </Box>
-      <Stack spacing={4} marginTop={5} position="relative">
-        {/* Spacer */}
-        <Box height="40px" /> {/* Adjust height as needed */}
-        {/* Table */}
-        <Box border="1px solid #00B981" borderRadius="4px" overflow="hidden">
-          {" "}
-          {/* Added overflow:hidden to prevent double border */}
-          <StyledTable numRows={7} numColumns={5} />
-        </Box>
-        {/* Other components */}
+      <Stack spacing={2} marginTop={2} position="relative">
+        {/* Select All Checkbox */}
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            marginLeft: "24px",
+          }}
+        ></Box>
+
+        {/* Row Selector */}
+        <Stack
+          spacing={2}
+          direction="row"
+          sx={{ display: "flex", alignItems: "center" }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ marginRight: "10px" }}
+            >
+              Rows:{" "}
+            </Typography>
+            <Select value={numRows} onChange={(event) => setNumRows(event.target.value)}>
+              <MenuItem value={10}>10</MenuItem>
+              <MenuItem value={20}>20</MenuItem>
+              <MenuItem value={30}>30</MenuItem>
+            </Select>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              paddingRight: 2,
+            }}
+          >
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
+            <Typography
+              variant="body1"
+              color="text.primary"
+              sx={{ fontSize: 20, fontFamily: "Rubik", marginLeft: 1 }}
+            >
+              Select All
+            </Typography>
+          </Box>
+        </Stack>
         <Box bgcolor="white" borderRadius="4px" overflow="hidden">
+          {" "}
+          {/* Set background color to white */}
           <Table>
             <TableHead>
               <TableRow>
@@ -117,21 +188,27 @@ const Delivery = () => {
                     Item Name
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   <Typography variant="body1" color="text.primary">
                     Date of Return
                   </Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   <Typography variant="body1" color="text.primary">
                     Refund Amount
                   </Typography>
+                </TableCell>
+                <TableCell align="right">
+                  <Typography variant="body1" color="text.primary"></Typography>
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>{generateRows()}</TableBody>
           </Table>
         </Box>
+        {showPopUp && (
+          <Popup order={popupInfo} onClose={handleClosePopup} />
+        )}
       </Stack>
     </PageContainer>
   );
