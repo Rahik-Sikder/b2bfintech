@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const authMiddleware = require("./auth-middleware.js");
 const firebase = require("./firebase/admin");
+const functions = require("firebase-functions");
+
 
 const app = express();
 app.use(bodyParser.json());
@@ -166,5 +168,5 @@ app.get("/completedData", (request, response) => {
 });
 
 
-app.listen(4000, () => console.log("The server is running at PORT 4000"));
-module.exports = app;
+// app.listen(4000, () => console.log("The server is running at PORT 4000"));
+exports.app = functions.https.onRequest(app);
