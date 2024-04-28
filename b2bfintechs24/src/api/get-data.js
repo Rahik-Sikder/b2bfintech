@@ -11,7 +11,7 @@ const getPendingData = async (setData) => {
     .then((data) => {
       // Handle the data received from the backend
       // console.log(data.orders);
-      setData(data);
+      setData(data.toReversed());
     })
     .catch((error) => {
       // Handle errors
@@ -29,8 +29,8 @@ const getDeliveryData = async (setData) => {
     })
     .then((data) => {
       // Handle the data received from the backend
-      console.log(data);
-      setData(data);
+      // console.log(data);
+      setData(data.toReversed());
     })
     .catch((error) => {
       // Handle errors
@@ -49,7 +49,8 @@ const getRecievedData = async (setData) => {
     .then((data) => {
       // Handle the data received from the backend
       // console.log(data);
-      setData(data);
+      setData(data.toReversed());
+
     })
     .catch((error) => {
       // Handle errors

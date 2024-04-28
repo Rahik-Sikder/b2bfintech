@@ -19,27 +19,16 @@ import Popup from "../components/Popup";
 
 import InfoIcon from "@mui/icons-material/Info";
 
-import { getPendingData } from "../api/get-data";
-
-const Pending = () => {
+const Pending = ({pendingData}) => {
   const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [pendingData, setPendingData] = useState([]);
+
 
   const [showPopUp, setShowPopUp] = useState(false);
   const [popupInfo, setPopupInfo] = useState({});
 
-  useEffect(() => {
-    async function fetchData() {
-      getPendingData(setPendingData);
-    }
-    fetchData();
 
-    return () => {
-      // Perform any clean-up here if necessary
-    };
-  }, []);
 
   const handleChangeRows = (event) => {
     setNumRows(event.target.value);

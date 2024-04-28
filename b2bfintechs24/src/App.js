@@ -1,4 +1,4 @@
-import { React } from "react";
+import { React, useState, useEffect } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 
@@ -21,9 +21,30 @@ import Profile from "./pages/Profile";
 // by setting user with useStorageState and seeing if user == null
 import { useBoolStorageState } from "./hooks/useStorageState";
 
+// API
+import { getPendingData, getDeliveryData, getRecievedData } from "./api/get-data";
+
+
 function App() {
 
   const [isLoggedIn, setLoggedIn] = useBoolStorageState("isUserLoggedIn", false);
+  const [pending, setPending] = useState([]);
+  const [deliveries, setDeliveries] = useState([]);
+  const [received, setReceived] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      getPendingData(setPending);
+      getDeliveryData(setDeliveries);
+      getRecievedData(setReceived); 
+
+    }
+    fetchData();
+
+    return () => {
+      // Perform any clean-up here if necessary
+    };
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
@@ -39,7 +60,7 @@ function App() {
           path="/pending"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Pending />
+              <Pending pendingData={pending} />
             </ProtectedRoute>
           }
         />
@@ -47,7 +68,7 @@ function App() {
           path="/delivery"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Delivery />
+              <Delivery deliveryData={deliveries}/>
             </ProtectedRoute>
           }
         />
@@ -55,7 +76,7 @@ function App() {
           path="/received"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Received />
+              <Received receivedData={received}/>
             </ProtectedRoute>
           }
         />

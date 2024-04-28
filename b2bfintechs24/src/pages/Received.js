@@ -18,22 +18,14 @@ import InfoIcon from "@mui/icons-material/Info";
 
 import PageContainer from "../components/PageContainer";
 import Popup from "../components/Popup";
-import { getRecievedData } from "../api/get-data"; 
 
-const Received = () => {
+const Received = ({receivedData}) => {
   const [numRows, setNumRows] = useState(20);
   const [selectAll, setSelectAll] = useState(false);
   const [selectedRows, setSelectedRows] = useState([]);
-  const [receivedData, setReceivedData] = useState([]); 
   const [showPopUp, setShowPopUp] = useState(false);
   const [popupInfo, setPopupInfo] = useState({});
 
-  useEffect(() => {
-    async function fetchData() {
-      getRecievedData(setReceivedData); 
-    }
-    fetchData();
-  }, []);
 
   const handleSelectAll = (event) => {
     if (event.target.checked) {

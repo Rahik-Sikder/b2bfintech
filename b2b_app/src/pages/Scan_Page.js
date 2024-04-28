@@ -51,10 +51,7 @@ const Scan_Page = ({ navigation }) => {
   const codeScanner = useCodeScanner({
     codeTypes: ["qr", "ean-13", "upc-a"],
     onCodeScanned: (codes) => {
-      for (const code of codes) {
-        // Sets code to the most recent
-        setCode(code.value);
-      }
+      setCode(codes[0].value);
     },
   });
 
