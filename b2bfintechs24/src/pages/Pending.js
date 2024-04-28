@@ -15,7 +15,6 @@ import {
   IconButton,
 } from "@mui/material";
 import PageContainer from "../components/PageContainer";
-import SimplePaper from "../components/SimplePaper";
 import Popup from "../components/Popup";
 
 import InfoIcon from "@mui/icons-material/Info";

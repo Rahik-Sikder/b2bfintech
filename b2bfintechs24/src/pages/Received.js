@@ -215,4 +215,11 @@ const Received = () => {
   );
 };
 
+const OrderInfoPopup = ({ order, handleClosePopup }) => {
+  console.log(order);
+  return (
+    <Popup width={1045} height={753} order={order} onClose={handleClosePopup} />
+  );
+};
+
 export default Received;
