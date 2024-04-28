@@ -24,5 +24,10 @@
   "devDependencies": {
     "@babel/core": "^7.20.0"
   },
+  "expo": {
+    "autolinking": {
+      "exclude": "expo-constants"
+    }
+  },
   "private": true
 }

@@ -1,11 +1,6 @@
 import { useState, React } from "react";
 
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 
 import {
   useCameraPermission,
@@ -14,11 +9,11 @@ import {
   requestPermission,
   useCodeScanner,
 } from "react-native-vision-camera";
-import Modal from "react-native-modal";
 
 import { styles } from "../styles/styles";
 
 import PageContainer from "../components/PageContainer";
+import ScanModal from "../components/ScanModal";
 
 const Scan_Page = ({ navigation }) => {
   const { hasPermission, requestPermission } = useCameraPermission();
@@ -28,7 +23,12 @@ const Scan_Page = ({ navigation }) => {
   if (!hasPermission) {
     requestPermission();
   }
-  const handleModal = () => setIsModalVisible(() => !isModalVisible);
+  const handleModal = () => {
+    if(isModalVisible){
+      setCode(0);
+    }
+    setIsModalVisible(() => !isModalVisible);
+  };
 
   const device = useCameraDevice("back");
   if (device == null || !hasPermission) return <NoCameraDeviceError />;
@@ -36,7 +36,9 @@ const Scan_Page = ({ navigation }) => {
   const handleScan = () => {
     // Implement your search logic here
     console.log("Scanning code: ", code);
-    handleModal()
+    if (code !== 0) {
+      handleModal();
+    }
   };
 
   const handleNavigation = () => {
@@ -45,10 +47,9 @@ const Scan_Page = ({ navigation }) => {
     navigation.navigate("Input_Page");
   };
 
-
   // 5. Initialize the Code Scanner to scan QR codes and Barcodes
   const codeScanner = useCodeScanner({
-    codeTypes: ["qr", "ean-13", 'upc-a'],
+    codeTypes: ["qr", "ean-13", "upc-a"],
     onCodeScanned: (codes) => {
       for (const code of codes) {
         // Sets code to the most recent
@@ -105,12 +106,11 @@ const Scan_Page = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <Modal
-        isVisible={isModalVisible}
-        style={{ backgroundColor: "white", borderRadius: 35 }}
-      >
-
-      </Modal>
+      <ScanModal
+        isModalVisible={isModalVisible}
+        handleModal={handleModal}
+        code={code}
+      />
     </PageContainer>
   );
 };

@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require("cors");
 const authMiddleware = require("./auth-middleware.js");
 const firebase = require("./firebase/admin");
-// const getDatabase = require("firebase/compat/database");
 
 const app = express();
 app.use(bodyParser.json());
@@ -81,7 +80,7 @@ app.post("/resetAllOrders", (request, response) => {
   );
 });
 
-app.post("/addOrder", (request, response) => {
+app.post("/submitReturn", (request, response) => {
 
   console.log("Adding order",request.body);
   order_id = 51180 + orderData.orders.length; // Arbritrary tbh, want to generate seq for demo
@@ -168,3 +167,4 @@ app.get("/completedData", (request, response) => {
 
 
 app.listen(4000, () => console.log("The server is running at PORT 4000"));
+module.exports = app;
