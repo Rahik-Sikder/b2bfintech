@@ -11,11 +11,9 @@ app.use(cors())
 
 database = firebase.database();
 
-// app.use("/", authMiddleware);
-
-app.get("/helloWorld", (request, response) => {
-  return response.send("Hello World");
-});
+// Used for authentication purposes
+// Right now, commented out for demo app 
+// app.use("/", authMiddleware); 
 
 // This is for demo purposes only, actual app should use Cloud Firestore or some other
 // document database instead of Firebase Realtime Database. Only using here because of
@@ -70,11 +68,13 @@ app.post("/resetAllOrders", (request, response) => {
         },
         (error) => {
           if (error) {
-            return response.send("Error, something went wrong");
+            return response.status(404).send("Error, something went wrong");
           }
         }
       );
   });
+
+  firebase.database().ref("/item_codes").set(orderData.item_codes);
 
   return response.send(
     "test sucess,completely reset the entire orders database!"
@@ -83,7 +83,7 @@ app.post("/resetAllOrders", (request, response) => {
 
 app.post("/addOrder", (request, response) => {
 
-  console.log(request.body);
+  console.log("Adding order",request.body);
   order_id = 51180 + orderData.orders.length; // Arbritrary tbh, want to generate seq for demo
   // Get the current date
   const currentDate = new Date();
@@ -113,11 +113,29 @@ app.post("/addOrder", (request, response) => {
       return_reasoning: request.body.return_reasoning,
     }, (error) => {
       if(error){
-        return response.send("Error, something went wrong");
+        return response.status(404).send("Error, something went wrong");
       } else {
         return response.send("Successfully added order!");
       }
     });
+});
+
+app.get("/scanCode", (request, response) => {
+  const code = request.query.item_code; // Retrieve item code from query parameters
+  console.log("Request made to scan code: ", code);
+  firebase.database().ref("/item_codes/" + code).get().then((snapshot)=> {
+    if(snapshot.exists()){
+      const item = snapshot.val()
+      console.log("Item requested: ", item);
+      return response.json(JSON.stringify(item)); // Send item details as JSON
+    } else {
+      console.log("Item not found for code: ", code);
+      return response.status(404).send("Item not found"); // Handle case when item code is not found
+    }
+  }).catch((error)=> {
+    console.error(error);
+    response.status(404).send("Error finding item code");
+  })
 });
 
 app.get("/pendingData", (request, response) => {
@@ -147,5 +165,6 @@ app.get("/completedData", (request, response) => {
   );
   return response.send(JSON.stringify(completedData));
 });
+
 
 app.listen(4000, () => console.log("The server is running at PORT 4000"));

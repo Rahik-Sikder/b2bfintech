@@ -400,5 +400,37 @@
       "item_description": "Polarized lenses; UV protection; plastic frame",
       "return_reasoning": "Scratch on the lens; unable to see clearly."
     }
-  ]
+  ],
+  "item_codes": {
+    "165322000081" : {
+      "item_name": "black sunglasses",
+      "item_company" : "ReClaim Demo Inc",
+      "item_description": "Polarized lenses; UV protection; plastic frame",
+      "item_cost": "$14.99"
+    },
+    "510066218634" : {
+      "item_name": "purple coffee mug",
+      "item_company" : "ReClaim Demo Inc",
+      "item_description": "a coffee mug that is colored purple",
+      "item_cost": "$4.20"
+    },
+    "195100002174" : {
+      "item_name": "green hoodie",
+      "item_company" : "ReClaim Demo Inc",
+      "item_description": "Cotton blend; kangaroo pocket; drawstring hood",
+      "item_cost": "$34.99"
+    },
+    "154817000064" : {
+      "item_name": "leather wallet",
+      "item_company" : "ReClaim Demo Inc",
+      "item_description": "Genuine leather; RFID blocking; 6 card slots",
+      "item_cost": "$19.99"
+    },
+    "174100001417" : {
+      "item_name": "blue yoga mat",
+      "item_company" : "ReClaim Demo Inc",
+      "item_description": "Non-slip surface; 6mm thick; includes carry strap",
+      "item_cost": "$24.99"
+    }
+  }
 }
