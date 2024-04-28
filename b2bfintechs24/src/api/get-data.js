@@ -1,7 +1,7 @@
 
 
 const getPendingData = async (setData) => {
-  fetch("http://localhost:4000/pendingData")
+  fetch("https://us-central1-reclaim-convergent.cloudfunctions.net/app/pendingData")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -20,7 +20,7 @@ const getPendingData = async (setData) => {
 };
 
 const getDeliveryData = async (setData) => {
-  fetch("http://localhost:4000/deliveryData")
+  fetch("https://us-central1-reclaim-convergent.cloudfunctions.net/app/deliveryData")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -39,7 +39,7 @@ const getDeliveryData = async (setData) => {
 };
 
 const getRecievedData = async (setData) => {
-  fetch("http://localhost:4000/recievedData")
+  fetch("https://us-central1-reclaim-convergent.cloudfunctions.net/app/recievedData")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -58,7 +58,7 @@ const getRecievedData = async (setData) => {
 };
 
 const getCompletedData = async (setData) => {
-  fetch("http://localhost:4000/completedData")
+  fetch("https://us-central1-reclaim-convergent.cloudfunctions.net/app/completedData")
     .then((response) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
