@@ -1,9 +1,12 @@
+import { useState, React } from "react";
+
 import {
   Text,
   View,
   TouchableOpacity,
   Image,
 } from "react-native";
+
 import {
   useCameraPermission,
   Camera,
@@ -11,6 +14,7 @@ import {
   requestPermission,
   useCodeScanner,
 } from "react-native-vision-camera";
+import Modal from "react-native-modal";
 
 import { styles } from "../styles/styles";
 
@@ -18,17 +22,21 @@ import PageContainer from "../components/PageContainer";
 
 const Scan_Page = ({ navigation }) => {
   const { hasPermission, requestPermission } = useCameraPermission();
+  const [code, setCode] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   if (!hasPermission) {
     requestPermission();
   }
+  const handleModal = () => setIsModalVisible(() => !isModalVisible);
 
   const device = useCameraDevice("back");
   if (device == null || !hasPermission) return <NoCameraDeviceError />;
 
   const handleScan = () => {
     // Implement your search logic here
-    console.log("Scanning...");
+    console.log("Scanning code: ", code);
+    handleModal()
   };
 
   const handleNavigation = () => {
@@ -37,14 +45,16 @@ const Scan_Page = ({ navigation }) => {
     navigation.navigate("Input_Page");
   };
 
-  const onCodeScanned = (code) => {
-    console.log(`Scanned ${code.length} codes:`, code);
-  };
 
   // 5. Initialize the Code Scanner to scan QR codes and Barcodes
   const codeScanner = useCodeScanner({
-    codeTypes: ["qr", "ean-13"],
-    onCodeScanned: onCodeScanned,
+    codeTypes: ["qr", "ean-13", 'upc-a'],
+    onCodeScanned: (codes) => {
+      for (const code of codes) {
+        // Sets code to the most recent
+        setCode(code.value);
+      }
+    },
   });
 
   return (
@@ -70,7 +80,6 @@ const Scan_Page = ({ navigation }) => {
           device={device}
           isActive={true}
           codeScanner={codeScanner}
-
         />
       </View>
 
@@ -96,6 +105,12 @@ const Scan_Page = ({ navigation }) => {
           </Text>
         </TouchableOpacity>
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        style={{ backgroundColor: "white", borderRadius: 35 }}
+      >
+
+      </Modal>
     </PageContainer>
   );
 };
